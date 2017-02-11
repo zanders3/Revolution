@@ -11,11 +11,12 @@ public class Tank : TankTarget
     public Material[] BlueMaterials;
 
     public int Health;
-    public int Damage;
     public float AttackRadius = 10f, TurretMoveSpeed = 1f;
     public Transform TurretTransform, CannonTip;
     public Shell Shell;
     public float TimeBetweenShots;
+
+    public TankHealthUI HealthUI;
 
     Vector3 factoryTarget;
 
@@ -27,6 +28,12 @@ public class Tank : TankTarget
 
         agent = GetComponent<NavMeshAgent>();
         agent.destination = target;
+
+        if (HealthUI)
+        {
+            Instantiate(HealthUI, transform, false).Setup(this);
+        }
+
         StartCoroutine(RunAI());
     }
 
