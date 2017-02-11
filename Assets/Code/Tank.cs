@@ -19,6 +19,8 @@ public class Tank : TankTarget
     public TankHealthUI HealthUI;
 
     Vector3 factoryTarget;
+    Vector3 turretTransformEuler;
+    TankAnimation tankAnim;
 
 	public void Setup(Vector3 target, Team team)
     {
@@ -34,6 +36,9 @@ public class Tank : TankTarget
             Instantiate(HealthUI, transform, false).Setup(this);
         }
 
+        tankAnim = GetComponentInChildren<TankAnimation>();
+        turretTransformEuler = TurretTransform.eulerAngles;
+
         StartCoroutine(RunAI());
     }
 
@@ -48,6 +53,13 @@ public class Tank : TankTarget
         Health--;
         if (Health <= 0)
             Destroy(gameObject);
+    }
+    
+    void LateUpdate()
+    {
+        tankAnim.IsDriving = agent.velocity.magnitude > .4f;
+        if (TurretTransform != null)
+            TurretTransform.eulerAngles = turretTransformEuler;
     }
 
     IEnumerator RunAI()
@@ -90,8 +102,8 @@ public class Tank : TankTarget
                 Vector3 targetPosition = target.gameObject.transform.position;
                 Vector3 targetDelta = (targetPosition - transform.position).normalized;
                 Vector3 targetEuler = Quaternion.LookRotation(-targetDelta, Vector3.up).eulerAngles;
-                Vector3 currentEuler = TurretTransform.eulerAngles;
-                TurretTransform.eulerAngles = new Vector3(
+                Vector3 currentEuler = turretTransformEuler;
+                turretTransformEuler = new Vector3(
                     Mathf.MoveTowardsAngle(currentEuler.x, targetEuler.x, TurretMoveSpeed * Time.deltaTime), 
                     Mathf.MoveTowardsAngle(currentEuler.y, targetEuler.y, TurretMoveSpeed * Time.deltaTime),
                     0f
@@ -108,8 +120,16 @@ public class Tank : TankTarget
             //Fire projectile
             while (target != null)
             {
-                Shell shell = Instantiate(Shell, CannonTip.position, CannonTip.rotation);
-                shell.Setup(target);
+                tankAnim.Shoot();
+                tankAnim.FireShell.RemoveAllListeners();
+                tankAnim.FireShell.AddListener(() =>
+                {
+                    if (target != null)
+                    {
+                        Shell shell = Instantiate(Shell, CannonTip.position, CannonTip.rotation);
+                        shell.Setup(target);
+                    }
+                });
                 yield return new WaitForSeconds(TimeBetweenShots);
             }
 
