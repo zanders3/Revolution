@@ -19,14 +19,12 @@ public class Tank : TankTarget
 
     public TankHealthUI HealthUI;
 
-    Vector3 factoryTarget;
     Vector3 turretTransformEuler;
     TankAnimation tankAnim;
 
 	public void Setup(Vector3 target, Team team, Vector3 postSpawnPosition)
     {
         Team = team;
-        factoryTarget = target;
         GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
 
         agent = GetComponent<NavMeshAgent>();
