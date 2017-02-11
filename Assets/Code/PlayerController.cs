@@ -9,8 +9,18 @@ public class PlayerController : MonoBehaviour {
     public GameObject SelectionIndicatorPrefab;
     GameObject SelectionIndicator;
 
+    [System.NonSerialized]
+    public int Currency;
+
+    [System.NonSerialized]
+    public Team PlayerTeam;
+
+    // Inputs for switching active factory
     public string UpInputString;
     public string DownInputString;
+
+    // Inputs for spawning units
+    public string SpawnInputString0;
 
     // Use this for initialization
     void Start ()
@@ -29,6 +39,10 @@ public class PlayerController : MonoBehaviour {
         {
             ChangeSelection(SelectedFactoryIdx + 1);
         }
+        else if (Input.GetButtonDown(SpawnInputString0))
+        {
+            TrySpawnUnit(0);
+        }
     }
 
     void ChangeSelection(int NewSelectionIdx)
@@ -45,15 +59,8 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        // Deselect the currently selected factory (if it is valid)
-        if (SelectedFactoryIdx >= 0 && SelectedFactoryIdx < FactoryList.Length)
-        {
-            FactoryList[SelectedFactoryIdx].bIsActive = false;
-        }
-
         // Select the new factory
         SelectedFactoryIdx = NewSelectionIdx;
-        FactoryList[SelectedFactoryIdx].bIsActive = true;
 
         if (SelectionIndicator != null)
         {
@@ -62,6 +69,19 @@ public class PlayerController : MonoBehaviour {
         else
         {
             SelectionIndicator = Instantiate(SelectionIndicatorPrefab, FactoryList[SelectedFactoryIdx].transform.position, FactoryList[SelectedFactoryIdx].transform.rotation);
+        }
+    }
+
+    void TrySpawnUnit(int unitType)
+    {
+        if (SelectedFactoryIdx >= 0 && SelectedFactoryIdx < FactoryList.Length)
+        {
+            int unitCost = 20;
+            if(Currency >= unitCost)
+            {
+                Currency -= unitCost;
+                FactoryList[SelectedFactoryIdx].SpawnUnit(unitType);
+            }
         }
     }
 }
