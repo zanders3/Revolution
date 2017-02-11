@@ -9,7 +9,7 @@ public enum Team
     Blue
 }
 
-public class Factory : MonoBehaviour
+public class Factory : TankTarget
 {
     public Team CurrentOwner;
 	public Tank SpawnPrefab;
@@ -32,7 +32,7 @@ public class Factory : MonoBehaviour
 		}
 	}
 
-    public void Damage()
+    public override void Damage()
     {
         if (CurrentOwner == Team.Blue)
             GameState.Instance.BlueHealth--;

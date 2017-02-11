@@ -3,15 +3,19 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Tank : MonoBehaviour
+public class Tank : TankTarget
 {
     NavMeshAgent agent;
     public Team Team { get; private set; }
     public Material[] RedMaterials;
     public Material[] BlueMaterials;
 
-    public float AttackRadius = 10f;
-    public Transform TurretTransform;
+    public int Health;
+    public int Damage;
+    public float AttackRadius = 10f, TurretMoveSpeed = 1f;
+    public Transform TurretTransform, CannonTip;
+    public Shell Shell;
+    public float TimeBetweenShots;
 
     Vector3 factoryTarget;
 
@@ -32,14 +36,20 @@ public class Tank : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, AttackRadius);
     }
 
+    public override void Damage()
+    {
+        Health--;
+        if (Health <= 0)
+            Destroy(gameObject);
+    }
+
     IEnumerator RunAI()
     {
         while (true)
         {
             //Pick the best target
-            Tank target = null;
-            Factory targetFactory = null;
-            while (target == null && targetFactory == null)
+            TankTarget target = null;
+            while (target == null)
             {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, AttackRadius);
                 float bestTargetDist = float.MaxValue;
@@ -56,9 +66,10 @@ public class Tank : MonoBehaviour
                         }
                     }
                     Factory factory = colliders[i].GetComponent<Factory>();
-                    if (factory != null)
+                    if (factory != null && factory.CurrentOwner != Team)
                     {
-                        targetFactory = factory;
+                        target = factory;
+                        bestTargetDist = 0f;//factories are the highest priority target
                     }
                 }
                 yield return null;
@@ -66,9 +77,36 @@ public class Tank : MonoBehaviour
 
             agent.Stop();
 
-            Vector3 targetPosition = targetFactory != null ? targetFactory.transform.position : target.transform.position;
-            Vector3 targetDelta = (targetPosition - transform.position).normalized;
-            TurretTransform.rotation = Quaternion.LookRotation(-targetDelta, Vector3.up);
+            //Rotate turret towards target
+            while (target != null)
+            {
+                Vector3 targetPosition = target.gameObject.transform.position;
+                Vector3 targetDelta = (targetPosition - transform.position).normalized;
+                Vector3 targetEuler = Quaternion.LookRotation(-targetDelta, Vector3.up).eulerAngles;
+                Vector3 currentEuler = TurretTransform.eulerAngles;
+                TurretTransform.eulerAngles = new Vector3(
+                    Mathf.MoveTowardsAngle(currentEuler.x, targetEuler.x, TurretMoveSpeed * Time.deltaTime), 
+                    Mathf.MoveTowardsAngle(currentEuler.y, targetEuler.y, TurretMoveSpeed * Time.deltaTime),
+                    0f
+                );
+
+                if (Mathf.Abs(targetEuler.y - currentEuler.y) < .1f)
+                {
+                    break;
+                }
+
+                yield return null;
+            }
+            
+            //Fire projectile
+            while (target != null)
+            {
+                Shell shell = Instantiate(Shell, CannonTip.position, CannonTip.rotation);
+                shell.Setup(target);
+                yield return new WaitForSeconds(TimeBetweenShots);
+            }
+
+            agent.Resume();
         }
     }
 }
