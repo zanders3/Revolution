@@ -27,13 +27,11 @@ public class Factory : TankTarget
 	{
 		if (bIsActive)
 		{
-            SpawnLocation = transform;
-
             List<Factory> targetFactories = Team == Team.Red ? GameState.Instance.BlueFactories : GameState.Instance.RedFactories;
 			Instantiate(SpawnPrefab, SpawnLocation.position, SpawnLocation.rotation).Setup(
                 targetFactories[UnityEngine.Random.Range(0, targetFactories.Count)].transform.position,
                 Team,
-                /*SpawnEndLocation.position*/Vector3.zero
+                SpawnEndLocation.position
             );
 		}
 	}
