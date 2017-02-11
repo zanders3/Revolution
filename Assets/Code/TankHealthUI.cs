@@ -24,7 +24,7 @@ public class TankHealthUI : MonoBehaviour
 	
 	void Update()
     {
-        HealthBarImage.fillAmount = tank.Health / maxTankHealth;
+        HealthBarImage.fillAmount = tank.Health / (float)maxTankHealth;
 
         // Billboard to the camera
         transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
