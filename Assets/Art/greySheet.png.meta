@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: d85ae3624f047d844a1339e638d8dd8f
-timeCreated: 1486827112
+timeCreated: 1486828570
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: greySheet_0
+    21300002: greySheet_0_border
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -83,12 +84,25 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 463
+        y: 465
         width: 194
-        height: 49
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 6, y: 7, z: 9, w: 8}
+      border: {x: 8, y: 10, z: 9, w: 7}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greySheet_0_border
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 464
+        width: 194
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 6}
       outline: []
       tessellationDetail: 0
     outline: []
