@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 
@@ -8,6 +9,9 @@ public class GameState : MonoBehaviour
 	public float GameTickTime = .5f;
 
 	public static GameState Instance;
+
+    public List<Factory> RedFactories = new List<Factory>();
+    public List<Factory> BlueFactories = new List<Factory>();
 
 	public UnityEvent OnGameTick = new UnityEvent();
 	float currentTickTime = 0f;

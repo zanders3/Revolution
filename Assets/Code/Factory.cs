@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum Team
 {
@@ -11,25 +13,22 @@ public class Factory : MonoBehaviour
 {
     public Team CurrentOwner;
 	public Tank SpawnPrefab;
-	public Path TargetPath;
-	public bool bMovesForwardsAlongSpline = true;
 	public bool bIsActive = true;
 
 	void Start()
 	{
-        if (TargetPath != null)
-        {
-            TargetPath.FactoryStart = this;
-            GameState.Instance.OnGameTick.AddListener(OnGameTick);
-        }
+        GameState.Instance.OnGameTick.AddListener(OnGameTick);
 	}
 
 	void OnGameTick()
 	{
 		if (bIsActive)
 		{
-			Tank tank = Instantiate(SpawnPrefab, transform.position, transform.rotation);
-			tank.Setup(TargetPath, bMovesForwardsAlongSpline);
+            List<Factory> targetFactories = CurrentOwner == Team.Red ? GameState.Instance.BlueFactories : GameState.Instance.RedFactories;
+			Instantiate(SpawnPrefab, transform.position, transform.rotation).Setup(
+                targetFactories[UnityEngine.Random.Range(0, targetFactories.Count)].transform.position,
+                CurrentOwner
+            );
 		}
 	}
 
