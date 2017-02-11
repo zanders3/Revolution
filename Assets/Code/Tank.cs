@@ -100,11 +100,11 @@ public class Tank : TankTarget
 
     IEnumerator RunAI(Vector3 postSpawnPosition, Vector3 agentTargetPosition)
     {
-        for (float t = 0f; t<2f; t+=Time.deltaTime)
+        /*for (float t = 0f; t<2f; t+=Time.deltaTime)
         {
             transform.position = Vector3.MoveTowards(transform.position, postSpawnPosition, agent.speed * Time.deltaTime);
             yield return null;
-        }
+        }*/
 
         agent.destination = agentTargetPosition;
 

@@ -21,6 +21,8 @@ public class Factory : TankTarget
 
     public void SpawnUnit(int unitType)
     {
+        SpawnLocation = transform;
+        SpawnEndLocation = transform;
         Tank newUnit = Instantiate(SpawnPrefab, SpawnLocation.position, SpawnLocation.rotation);
         newUnit.Setup(
             TargetFactory.transform.position,
