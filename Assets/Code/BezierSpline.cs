@@ -172,4 +172,12 @@ public class BezierSpline : MonoBehaviour
 			TotalLength += Vector3.Distance(GetPoint(i / (float)NumPoints), GetPoint((i + 1) / (float)NumPoints));
 		}
 	}
+
+    void OnDrawGizmos()
+    {
+        for (int i = 0; i<NumPoints; i++)
+        {
+            Gizmos.DrawLine(GetPoint(i / (float)NumPoints), GetPoint((i + 1) / (float)NumPoints));
+        }
+    }
 }

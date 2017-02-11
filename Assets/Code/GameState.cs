@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class GameState : MonoBehaviour
 {
 	public int RedHealth = 10, BlueHealth = 10;
-	public float GameTickTime = 1f;
+	public float GameTickTime = .5f;
 
 	public static GameState Instance;
 

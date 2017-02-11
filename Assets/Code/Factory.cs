@@ -1,16 +1,27 @@
 ﻿using System;
 using UnityEngine;
 
+public enum Team
+{
+    Red,
+    Blue
+}
+
 public class Factory : MonoBehaviour
 {
+    public Team CurrentOwner;
 	public Tank SpawnPrefab;
-	public BezierSpline TargetSpline;
+	public Path TargetPath;
 	public bool bMovesForwardsAlongSpline = true;
 	public bool bIsActive = true;
 
 	void Start()
 	{
-		GameState.Instance.OnGameTick.AddListener(OnGameTick);
+        if (TargetPath != null)
+        {
+            TargetPath.FactoryStart = this;
+            GameState.Instance.OnGameTick.AddListener(OnGameTick);
+        }
 	}
 
 	void OnGameTick()
@@ -18,7 +29,15 @@ public class Factory : MonoBehaviour
 		if (bIsActive)
 		{
 			Tank tank = Instantiate(SpawnPrefab, transform.position, transform.rotation);
-			tank.Setup(TargetSpline, bMovesForwardsAlongSpline);
+			tank.Setup(TargetPath, bMovesForwardsAlongSpline);
 		}
 	}
+
+    public void Damage()
+    {
+        if (CurrentOwner == Team.Blue)
+            GameState.Instance.BlueHealth--;
+        else if (CurrentOwner == Team.Red)
+            GameState.Instance.RedHealth--;
+    }
 }
