@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public Factory[] FactoryList;
+    public List<Factory> FactoryList;
     int SelectedFactoryIdx = -1;
     public GameObject SelectionIndicatorPrefab;
     GameObject SelectionIndicator;
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Don't do anything if the new index is invalid
-        if (NewSelectionIdx < 0 || NewSelectionIdx >= FactoryList.Length)
+        if (NewSelectionIdx < 0 || NewSelectionIdx >= FactoryList.Count)
         {
             return;
         }
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour {
 
     void TrySpawnUnit(int unitType)
     {
-        if (SelectedFactoryIdx >= 0 && SelectedFactoryIdx < FactoryList.Length)
+        if (SelectedFactoryIdx >= 0 && SelectedFactoryIdx < FactoryList.Count)
         {
             int unitCost = 20;
             if(Currency >= unitCost)

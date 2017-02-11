@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,38 +7,37 @@ using UnityEngine.AI;
 public class Tank : TankTarget
 {
     NavMeshAgent agent;
-    public Team Team { get; private set; }
     public Material[] RedMaterials;
     public Material[] BlueMaterials;
-
+    
     public GameObject TankDeathPrefab, TankExplosion;
-    public int Health;
     public float AttackRadius = 10f, TurretMoveSpeed = 1f, ExplosionRadius = 3f;
     public Transform TurretTransform, CannonTip;
     public Shell Shell;
     public float TimeBetweenShots;
+    public int ExplosionDamageAmount = 1;
 
     public TankHealthUI HealthUI;
 
     Vector3 turretTransformEuler;
     TankAnimation tankAnim;
+    Factory targetFactory;
 
-	public void Setup(Vector3 target, Team team, Vector3 postSpawnPosition)
+	public void Setup(Factory targetFactory, Team team, Vector3 spawnTargetLocation)
     {
+        this.targetFactory = targetFactory;
         Team = team;
         GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
 
         agent = GetComponent<NavMeshAgent>();
 
         if (HealthUI)
-        {
             Instantiate(HealthUI, transform, false).Setup(this);
-        }
 
         tankAnim = GetComponentInChildren<TankAnimation>();
         turretTransformEuler = TurretTransform.eulerAngles;
 
-        StartCoroutine(RunAI(postSpawnPosition, target));
+        StartCoroutine(RunAI(spawnTargetLocation));
     }
 
     void OnDrawGizmos()
@@ -46,11 +46,6 @@ public class Tank : TankTarget
         Gizmos.DrawWireSphere(transform.position, AttackRadius);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, ExplosionRadius);
-    }
-
-    public override void Damage()
-    {
-        Health--;
     }
 
     void Update()
@@ -63,7 +58,7 @@ public class Tank : TankTarget
                 Tank tank = colliders[i].GetComponent<Tank>();
                 if (tank != null)
                 {
-                    tank.Damage();
+                    tank.Damage(ExplosionDamageAmount);
                 }
             }
 
@@ -98,15 +93,16 @@ public class Tank : TankTarget
         );
     }
 
-    IEnumerator RunAI(Vector3 postSpawnPosition, Vector3 agentTargetPosition)
+    IEnumerator RunAI(Vector3 postSpawnPosition)
     {
-        /*for (float t = 0f; t<2f; t+=Time.deltaTime)
+        for (float t = 0f; t<1f; t+=Time.deltaTime)
         {
             transform.position = Vector3.MoveTowards(transform.position, postSpawnPosition, agent.speed * Time.deltaTime);
             yield return null;
-        }*/
+        }
 
-        agent.destination = agentTargetPosition;
+        if (targetFactory != null)
+            agent.destination = targetFactory.transform.position;
 
         while (true)
         {
@@ -118,26 +114,28 @@ public class Tank : TankTarget
                 float bestTargetDist = float.MaxValue;
                 for (int i = 0; i < colliders.Length; i++)
                 {
-                    Tank tank = colliders[i].GetComponent<Tank>();
-                    if (tank != null && tank.Team != Team)
+                    TankTarget newTarget = colliders[i].GetComponent<TankTarget>();
+                    if (newTarget != null && newTarget.Team != Team)
                     {
-                        float dist = Vector3.Distance(transform.position, tank.transform.position);
+                        float dist = Vector3.Distance(transform.position, newTarget.transform.position);
                         if (dist < bestTargetDist)
                         {
-                            target = tank;
+                            target = newTarget;
                             bestTargetDist = dist;
                         }
-                    }
-                    Factory factory = colliders[i].GetComponent<Factory>();
-                    if (factory != null && factory.Team != Team)
-                    {
-                        target = factory;
-                        bestTargetDist = 0f;//factories are the highest priority target
                     }
                 }
 
                 if (agent.desiredVelocity.sqrMagnitude > 0.1f)
                     MoveTurretToTarget(Quaternion.LookRotation(-agent.desiredVelocity, Vector3.up).eulerAngles);
+
+                if (targetFactory == null)
+                {
+                    targetFactory = GameState.Instance.FindEnemyFactory(Team);
+                    if (targetFactory != null)
+                        agent.destination = targetFactory.transform.position;
+                }
+
                 yield return null;
             }
 
@@ -174,9 +172,8 @@ public class Tank : TankTarget
                 });
                 yield return new WaitForSeconds(TimeBetweenShots);
             }
-            
-            if (agent.isOnNavMesh)
-                agent.Resume();
+
+            agent.Resume();
         }
     }
 }

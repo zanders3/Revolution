@@ -49,6 +49,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4134799076850348}
+  - component: {fileID: 114386805873422746}
+  - component: {fileID: 65972658233808114}
   m_Layer: 0
   m_Name: FactoryPrefab
   m_TagString: Untagged
@@ -155,6 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4864091790438706}
   - component: {fileID: 95799574068959366}
+  - component: {fileID: 114177919375795602}
   m_Layer: 0
   m_Name: factory
   m_TagString: Untagged
@@ -360,6 +363,18 @@ Transform:
   m_Father: {fileID: 4134799076850348}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65972658233808114
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179564592742760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95799574068959366
 Animator:
   serializedVersion: 3
@@ -377,6 +392,44 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114177919375795602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1820148990033848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ba2be49477abf48afc0b8249aab590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnUnit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114386805873422746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179564592742760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78fe8455c7c2421eb3158f6a1900845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Team: 0
+  Health: 30
+  SpawnPrefabs:
+  - {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c, type: 2}
+  SpawnLocation: {fileID: 4628806793453290}
+  SpawnEndLocation: {fileID: 4115529437443212}
+  TargetFactory: {fileID: 0}
+  HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
+  LargeExplosionPrefab: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
+    type: 2}
+  ExplosionRadius: 8
 --- !u!137 &137380666211875626
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

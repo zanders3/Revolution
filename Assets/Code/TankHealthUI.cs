@@ -5,26 +5,26 @@ using UnityEngine.UI;
 
 public class TankHealthUI : MonoBehaviour
 {
-    Tank tank;
+    TankTarget target;
     Camera mainCamera;
     public Image HealthBarImage;
 
-    int maxTankHealth;
+    int maxHealth;
 
 	void Start()
     {
         mainCamera = Camera.main;
 	}
 
-    public void Setup(Tank tank)
+    public void Setup(TankTarget target)
     {
-        this.tank = tank;
-        maxTankHealth = tank.Health;
+        this.target = target;
+        maxHealth = target.Health;
     }
 	
 	void Update()
     {
-        HealthBarImage.fillAmount = tank.Health / (float)maxTankHealth;
+        HealthBarImage.fillAmount = target.Health / (float)maxHealth;
 
         // Billboard to the camera
         transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);

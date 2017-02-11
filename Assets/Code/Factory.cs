@@ -5,29 +5,68 @@ using UnityEngine.AI;
 
 public class Factory : TankTarget
 {
-    public Team Team;
-	public Tank SpawnPrefab;
-    public float SpawnAnimTime;
+	public Tank[] SpawnPrefabs;
     public Transform SpawnLocation, SpawnEndLocation;
     public Factory TargetFactory;
+    
+    public TankHealthUI HealthUI;
+    public GameObject LargeExplosionPrefab;
+    public float ExplosionRadius;
 
-    public override void Damage()
+    FactoryAnimation factoryAnim;
+
+    void Start()
     {
-        //if (CurrentOwner == Team.Blue)
-        //    GameState.Instance.BlueHealth--;
-        //else if (CurrentOwner == Team.Red)
-        //    GameState.Instance.RedHealth--;
+        factoryAnim = GetComponentInChildren<FactoryAnimation>();
+        if (HealthUI)
+            Instantiate(HealthUI, transform, false).Setup(this);
     }
 
-    public void SpawnUnit(int unitType)
+    void OnDrawGizmos()
     {
-        SpawnLocation = transform;
-        SpawnEndLocation = transform;
-        Tank newUnit = Instantiate(SpawnPrefab, SpawnLocation.position, SpawnLocation.rotation);
-        newUnit.Setup(
-            TargetFactory.transform.position,
-            Team,
-            SpawnEndLocation.position
-        );
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, ExplosionRadius);
+    }
+
+    void Update()
+    {
+        if (Health <= 0)
+        {
+            Destroy(Instantiate(LargeExplosionPrefab, transform.position, transform.rotation), 5f);
+
+            foreach (Collider collider in Physics.OverlapSphere(transform.position, ExplosionRadius))
+            {
+                TankTarget target = collider.GetComponent<TankTarget>();
+                if (target != null)
+                    target.Damage(1000);
+            }
+            
+            Destroy(gameObject);
+        }
+    }
+
+    public Factory FindTargetFactory()
+    {
+        if (TargetFactory != null)
+            return TargetFactory;
+
+        return GameState.Instance.FindEnemyFactory(Team);
+    }
+
+    public bool SpawnUnit(int unitType)
+    {
+        factoryAnim.DoSpawnAnimation();
+        factoryAnim.SpawnUnit.RemoveAllListeners();
+        factoryAnim.SpawnUnit.AddListener(() =>
+        {
+            Tank newUnit = Instantiate(SpawnPrefabs[unitType], SpawnLocation.position, SpawnLocation.rotation);
+            newUnit.Setup(
+                FindTargetFactory(),
+                Team,
+                SpawnEndLocation.position
+            );
+        });
+
+        return true;
     }
 }

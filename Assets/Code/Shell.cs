@@ -7,6 +7,8 @@ public class Shell : MonoBehaviour
     Vector3 firePosition, targetPosition;
     TankTarget target;
 
+    public int DamageAmount = 1;
+
     public float MoveSpeed;
     public AnimationCurve YOffset;
     float distanceToTarget;
@@ -35,7 +37,7 @@ public class Shell : MonoBehaviour
         if (currentDistance >= distanceToTarget)
         {
             if (target != null)
-                target.Damage();
+                target.Damage(DamageAmount);
 
             Destroy(gameObject);
         }

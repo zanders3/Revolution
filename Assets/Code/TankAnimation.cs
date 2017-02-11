@@ -9,7 +9,7 @@ public class TankAnimation : MonoBehaviour
     public bool IsDriving { set { animator.SetBool("Driving", value); } }
     public UnityEvent FireShell = new UnityEvent();
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }

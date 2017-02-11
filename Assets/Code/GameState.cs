@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
 public enum Team
 {
     Red,
@@ -55,5 +56,15 @@ public class GameState : MonoBehaviour
         {
             return BluePlayer;
         }
+    }
+
+    public Factory FindEnemyFactory(Team team)
+    {
+        List<Factory> enemyFactoryList = GetPlayerController(team == Team.Blue ? Team.Red : Team.Blue).FactoryList;
+        enemyFactoryList.RemoveAll(factory => factory == null);
+        if (enemyFactoryList.Count > 0)
+            return enemyFactoryList[0];
+
+        return null;
     }
 }
