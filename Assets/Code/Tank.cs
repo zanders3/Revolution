@@ -62,6 +62,16 @@ public class Tank : TankTarget
             TurretTransform.eulerAngles = turretTransformEuler;
     }
 
+    void MoveTurretToTarget(Vector3 targetEuler)
+    {
+        Vector3 currentEuler = turretTransformEuler;
+        turretTransformEuler = new Vector3(
+            Mathf.MoveTowardsAngle(currentEuler.x, targetEuler.x, TurretMoveSpeed * Time.deltaTime),
+            Mathf.MoveTowardsAngle(currentEuler.y, targetEuler.y, TurretMoveSpeed * Time.deltaTime),
+            0f
+        );
+    }
+
     IEnumerator RunAI()
     {
         while (true)
@@ -91,6 +101,9 @@ public class Tank : TankTarget
                         bestTargetDist = 0f;//factories are the highest priority target
                     }
                 }
+
+                if (agent.desiredVelocity.sqrMagnitude > 0.1f)
+                    MoveTurretToTarget(Quaternion.LookRotation(-agent.desiredVelocity, Vector3.up).eulerAngles);
                 yield return null;
             }
 
@@ -101,15 +114,10 @@ public class Tank : TankTarget
             {
                 Vector3 targetPosition = target.gameObject.transform.position;
                 Vector3 targetDelta = (targetPosition - transform.position).normalized;
-                Vector3 targetEuler = Quaternion.LookRotation(-targetDelta, Vector3.up).eulerAngles;
-                Vector3 currentEuler = turretTransformEuler;
-                turretTransformEuler = new Vector3(
-                    Mathf.MoveTowardsAngle(currentEuler.x, targetEuler.x, TurretMoveSpeed * Time.deltaTime), 
-                    Mathf.MoveTowardsAngle(currentEuler.y, targetEuler.y, TurretMoveSpeed * Time.deltaTime),
-                    0f
-                );
 
-                if (Mathf.Abs(targetEuler.y - currentEuler.y) < .1f)
+                Vector3 targetEuler = Quaternion.LookRotation(-targetDelta, Vector3.up).eulerAngles;
+                MoveTurretToTarget(targetEuler);
+                if (Mathf.Abs(targetEuler.y - turretTransformEuler.y) < .1f)
                 {
                     break;
                 }
@@ -132,8 +140,9 @@ public class Tank : TankTarget
                 });
                 yield return new WaitForSeconds(TimeBetweenShots);
             }
-
-            agent.Resume();
+            
+            if (agent.isOnNavMesh)
+                agent.Resume();
         }
     }
 }
