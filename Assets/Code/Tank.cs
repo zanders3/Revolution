@@ -12,7 +12,7 @@ public class Tank : TankTarget
 
     public GameObject TankDeathPrefab, TankExplosion;
     public int Health;
-    public float AttackRadius = 10f, TurretMoveSpeed = 1f;
+    public float AttackRadius = 10f, TurretMoveSpeed = 1f, ExplosionRadius = 3f;
     public Transform TurretTransform, CannonTip;
     public Shell Shell;
     public float TimeBetweenShots;
@@ -23,14 +23,13 @@ public class Tank : TankTarget
     Vector3 turretTransformEuler;
     TankAnimation tankAnim;
 
-	public void Setup(Vector3 target, Team team)
+	public void Setup(Vector3 target, Team team, Vector3 postSpawnPosition)
     {
         Team = team;
         factoryTarget = target;
         GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
 
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = target;
 
         if (HealthUI)
         {
@@ -40,26 +39,42 @@ public class Tank : TankTarget
         tankAnim = GetComponentInChildren<TankAnimation>();
         turretTransformEuler = TurretTransform.eulerAngles;
 
-        StartCoroutine(RunAI());
+        StartCoroutine(RunAI(postSpawnPosition, target));
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, AttackRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, ExplosionRadius);
     }
 
     public override void Damage()
     {
         Health--;
+    }
+
+    void Update()
+    {
         if (Health <= 0)
         {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                Tank tank = colliders[i].GetComponent<Tank>();
+                if (tank != null)
+                {
+                    tank.Damage();
+                }
+            }
+
             Destroy(Instantiate(TankExplosion, transform.position, transform.rotation), 1.5f);
             GameObject tankDeath = Instantiate(TankDeathPrefab, transform.position, transform.rotation);
             foreach (Transform explosionPiece in tankDeath.transform)
             {
                 explosionPiece.transform.parent = null;
-                explosionPiece.GetComponent<Rigidbody>().AddExplosionForce(500f, transform.position, 10f);
+                explosionPiece.GetComponent<Rigidbody>().AddExplosionForce(500f, transform.position, ExplosionRadius);
                 explosionPiece.GetComponent<MeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
                 Destroy(explosionPiece.gameObject, 4f);
             }
@@ -85,8 +100,16 @@ public class Tank : TankTarget
         );
     }
 
-    IEnumerator RunAI()
+    IEnumerator RunAI(Vector3 postSpawnPosition, Vector3 agentTargetPosition)
     {
+        /*for (float t = 0f; t<2f; t+=Time.deltaTime)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, postSpawnPosition, agent.speed * Time.deltaTime);
+            yield return null;
+        }*/
+
+        agent.destination = agentTargetPosition;
+
         while (true)
         {
             //Pick the best target
@@ -108,7 +131,7 @@ public class Tank : TankTarget
                         }
                     }
                     Factory factory = colliders[i].GetComponent<Factory>();
-                    if (factory != null && factory.CurrentOwner != Team)
+                    if (factory != null && factory.Team != Team)
                     {
                         target = factory;
                         bestTargetDist = 0f;//factories are the highest priority target

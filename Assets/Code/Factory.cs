@@ -11,9 +11,12 @@ public enum Team
 
 public class Factory : TankTarget
 {
-    public Team CurrentOwner;
+    public Team Team;
 	public Tank SpawnPrefab;
 	public bool bIsActive = true;
+
+    public float SpawnAnimTime;
+    public Transform SpawnLocation, SpawnEndLocation;
 
 	void Start()
 	{
@@ -24,19 +27,22 @@ public class Factory : TankTarget
 	{
 		if (bIsActive)
 		{
-            List<Factory> targetFactories = CurrentOwner == Team.Red ? GameState.Instance.BlueFactories : GameState.Instance.RedFactories;
-			Instantiate(SpawnPrefab, transform.position, transform.rotation).Setup(
+            SpawnLocation = transform;
+
+            List<Factory> targetFactories = Team == Team.Red ? GameState.Instance.BlueFactories : GameState.Instance.RedFactories;
+			Instantiate(SpawnPrefab, SpawnLocation.position, SpawnLocation.rotation).Setup(
                 targetFactories[UnityEngine.Random.Range(0, targetFactories.Count)].transform.position,
-                CurrentOwner
+                Team,
+                /*SpawnEndLocation.position*/Vector3.zero
             );
 		}
 	}
 
     public override void Damage()
     {
-        if (CurrentOwner == Team.Blue)
+        if (Team == Team.Blue)
             GameState.Instance.BlueHealth--;
-        else if (CurrentOwner == Team.Red)
+        else if (Team == Team.Red)
             GameState.Instance.RedHealth--;
     }
 }

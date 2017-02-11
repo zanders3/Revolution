@@ -140,10 +140,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78fe8455c7c2421eb3158f6a1900845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentOwner: 1
+  Team: 1
   SpawnPrefab: {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c,
     type: 2}
   bIsActive: 0
+  SpawnAnimTime: 0
+  SpawnLocation: {fileID: 0}
+  SpawnEndLocation: {fileID: 0}
 --- !u!65 &136694504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -259,10 +262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78fe8455c7c2421eb3158f6a1900845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentOwner: 0
+  Team: 0
   SpawnPrefab: {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c,
     type: 2}
   bIsActive: 0
+  SpawnAnimTime: 0
+  SpawnLocation: {fileID: 0}
+  SpawnEndLocation: {fileID: 0}
 --- !u!1001 &329956120
 Prefab:
   m_ObjectHideFlags: 0
@@ -325,6 +331,11 @@ Prefab:
         type: 2}
       propertyPath: bIsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114380176356666988, guid: c4d1baf42c1db5c47b753fc91822fd4a,
+        type: 2}
+      propertyPath: Team
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23763182416065964, guid: c4d1baf42c1db5c47b753fc91822fd4a, type: 2}
@@ -586,10 +597,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78fe8455c7c2421eb3158f6a1900845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentOwner: 0
+  Team: 0
   SpawnPrefab: {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c,
     type: 2}
   bIsActive: 0
+  SpawnAnimTime: 0
+  SpawnLocation: {fileID: 0}
+  SpawnEndLocation: {fileID: 0}
 --- !u!1 &861632898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,6 +1379,11 @@ Prefab:
       propertyPath: bIsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114380176356666988, guid: c4d1baf42c1db5c47b753fc91822fd4a,
+        type: 2}
+      propertyPath: Team
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23763182416065964, guid: c4d1baf42c1db5c47b753fc91822fd4a, type: 2}
     - {fileID: 33254331226531386, guid: c4d1baf42c1db5c47b753fc91822fd4a, type: 2}
@@ -1432,6 +1451,11 @@ Prefab:
         type: 2}
       propertyPath: bIsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114380176356666988, guid: c4d1baf42c1db5c47b753fc91822fd4a,
+        type: 2}
+      propertyPath: Team
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 23763182416065964, guid: c4d1baf42c1db5c47b753fc91822fd4a, type: 2}
@@ -1661,10 +1685,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78fe8455c7c2421eb3158f6a1900845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentOwner: 1
+  Team: 1
   SpawnPrefab: {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c,
     type: 2}
   bIsActive: 0
+  SpawnAnimTime: 0
+  SpawnLocation: {fileID: 0}
+  SpawnEndLocation: {fileID: 0}
 --- !u!65 &1625290953
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1775,10 +1802,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78fe8455c7c2421eb3158f6a1900845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentOwner: 0
+  Team: 0
   SpawnPrefab: {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c,
     type: 2}
   bIsActive: 0
+  SpawnAnimTime: 0
+  SpawnLocation: {fileID: 0}
+  SpawnEndLocation: {fileID: 0}
 --- !u!1 &1745954211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,10 +1839,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78fe8455c7c2421eb3158f6a1900845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentOwner: 1
+  Team: 1
   SpawnPrefab: {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c,
     type: 2}
   bIsActive: 0
+  SpawnAnimTime: 0
+  SpawnLocation: {fileID: 0}
+  SpawnEndLocation: {fileID: 0}
 --- !u!65 &1745954213
 BoxCollider:
   m_ObjectHideFlags: 0
