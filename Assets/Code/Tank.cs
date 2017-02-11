@@ -13,6 +13,8 @@ public class Tank : MonoBehaviour
     public float AttackRadius = 10f;
     public Transform TurretTransform;
 
+    public TankHealthUI HealthUI;
+
     Vector3 factoryTarget;
 
 	public void Setup(Vector3 target, Team team)
@@ -23,6 +25,13 @@ public class Tank : MonoBehaviour
 
         agent = GetComponent<NavMeshAgent>();
         agent.destination = target;
+
+        if (HealthUI)
+        {
+            Instantiate(HealthUI, transform, false);
+            HealthUI.tank = this;
+        }
+
         StartCoroutine(RunAI());
     }
 
