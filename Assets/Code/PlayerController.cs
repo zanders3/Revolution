@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
 
     public Factory[] FactoryList;
     int SelectedFactoryIdx = -1;
-    public GameObject SelectionIndicator;
+    public GameObject SelectionIndicatorPrefab;
+    GameObject SelectionIndicator;
 
     public string UpInputString;
     public string DownInputString;
@@ -53,6 +54,14 @@ public class PlayerController : MonoBehaviour {
         // Select the new factory
         SelectedFactoryIdx = NewSelectionIdx;
         FactoryList[SelectedFactoryIdx].bIsActive = true;
-        SelectionIndicator.transform.position = FactoryList[SelectedFactoryIdx].transform.position;
+
+        if (SelectionIndicator != null)
+        {
+            SelectionIndicator.transform.position = FactoryList[SelectedFactoryIdx].transform.position;
+        }
+        else
+        {
+            SelectionIndicator = Instantiate(SelectionIndicatorPrefab, FactoryList[SelectedFactoryIdx].transform.position, FactoryList[SelectedFactoryIdx].transform.rotation);
+        }
     }
 }

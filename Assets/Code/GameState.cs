@@ -26,4 +26,9 @@ public class GameState : MonoBehaviour
 			currentTickTime += GameTickTime;
 		}
 	}
+
+    public float GetTickProgress()
+    {
+        return Mathf.Clamp(1.0f - currentTickTime / GameTickTime, 0.0f, 1.0f);
+    }
 }
