@@ -21,18 +21,4 @@ public class Path : MonoBehaviour
         for (int i = 0; i<PathEnd.Count; i++)
             PathEnd[i].PathStart.Add(this);
     }
-
-    void OnValidate()
-    {
-        BezierSpline spline = GetComponent<BezierSpline>();
-        Vector3 bezierPos = transform.TransformPoint(spline.GetControlPoint(spline.ControlPointCount - 2));
-        Vector3 snapPos = transform.TransformPoint(spline.GetControlPoint(spline.ControlPointCount - 1));
-        bezierPos = snapPos + (snapPos - bezierPos);
-        for (int i = 0; i<PathEnd.Count; i++)
-        {
-            BezierSpline target = PathEnd[i].GetComponent<BezierSpline>();
-            target.SetControlPoint(0, target.transform.InverseTransformPoint(snapPos));
-            target.SetControlPoint(1, target.transform.InverseTransformPoint(bezierPos));
-        }
-    }
 }
