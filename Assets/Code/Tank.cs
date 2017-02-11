@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
+public enum TankState
+{
+    Moving,
+    Attacking
+}
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class Tank : MonoBehaviour
 {
@@ -8,6 +14,8 @@ public class Tank : MonoBehaviour
     public Team Team { get; private set; }
     public Material[] RedMaterials;
     public Material[] BlueMaterials;
+
+    public float AttackRadius = 10f;
 
 	public void Setup(Vector3 target, Team team)
     {
@@ -19,6 +27,6 @@ public class Tank : MonoBehaviour
 
     void Update()
     {
-
+        
     }
 }
