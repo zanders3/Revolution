@@ -10,6 +10,7 @@ public class Tank : TankTarget
     public Material[] RedMaterials;
     public Material[] BlueMaterials;
 
+    public GameObject TankDeathPrefab, TankExplosion;
     public int Health;
     public float AttackRadius = 10f, TurretMoveSpeed = 1f;
     public Transform TurretTransform, CannonTip;
@@ -26,7 +27,7 @@ public class Tank : TankTarget
     {
         Team = team;
         factoryTarget = target;
-        GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials = team == Team.Red ? RedMaterials : BlueMaterials;
+        GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
 
         agent = GetComponent<NavMeshAgent>();
         agent.destination = target;
@@ -52,7 +53,19 @@ public class Tank : TankTarget
     {
         Health--;
         if (Health <= 0)
+        {
+            Destroy(Instantiate(TankExplosion, transform.position, transform.rotation), 1.5f);
+            GameObject tankDeath = Instantiate(TankDeathPrefab, transform.position, transform.rotation);
+            foreach (Transform explosionPiece in tankDeath.transform)
+            {
+                explosionPiece.transform.parent = null;
+                explosionPiece.GetComponent<Rigidbody>().AddExplosionForce(500f, transform.position, 10f);
+                explosionPiece.GetComponent<MeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
+                Destroy(explosionPiece.gameObject, 4f);
+            }
+            Destroy(tankDeath);
             Destroy(gameObject);
+        }
     }
     
     void LateUpdate()

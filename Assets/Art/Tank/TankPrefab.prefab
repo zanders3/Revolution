@@ -217,7 +217,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1875450442111706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1353145, y: -0.07, z: -1.03}
+  m_LocalPosition: {x: -11.155671, y: -0.007427283, z: -2.671023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4753334700003894}
@@ -416,6 +416,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
   - {fileID: 2100000, guid: 2b40c792345c55c44b1d02293f0c8eaf, type: 2}
   - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
+  TankDeathPrefab: {fileID: 1452906676843262, guid: 1e03864e4a85d4e4fb2d1a3cab720135,
+    type: 2}
+  TankExplosion: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 2}
   Health: 4
   AttackRadius: 8
   TurretMoveSpeed: 240
