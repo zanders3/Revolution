@@ -22,7 +22,7 @@ public class Factory : TankTarget
         Tank newUnit = Instantiate(SpawnPrefab, transform.position, transform.rotation);
         newUnit.Setup(
             TargetFactory.transform.position,
-            CurrentOwner,
+            Team,
             Vector3.zero
         );
     }
