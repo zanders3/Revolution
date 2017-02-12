@@ -6,9 +6,7 @@ public class Shell : MonoBehaviour
 {
     Vector3 firePosition, targetPosition;
     UnitTarget target;
-
-    public int DamageAmount = 1;
-
+    
     public float MoveSpeed;
     public AnimationCurve YOffset;
     float distanceToTarget;

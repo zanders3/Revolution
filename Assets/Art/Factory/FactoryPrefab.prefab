@@ -421,8 +421,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Team: 0
   Health: 30
+  GunDamageTaken: 1
+  ExplosionDamageTaken: 1
+  ShellDamageTaken: 1
+  FactoryExplosionDamageTaken: 1000
   SpawnPrefabs:
   - {fileID: 114797676054722456, guid: 65a5a710b5d77ed4986dafc0c0fc0213, type: 2}
+  - {fileID: 114091442759264608, guid: f8ae2fb6d1b20b641866b77988a44ed0, type: 2}
   - {fileID: 114195492523326300, guid: caf1820d9a87a6f4abb2b15b83f42243, type: 2}
   - {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c, type: 2}
   SpawnLocation: {fileID: 4628806793453290}
