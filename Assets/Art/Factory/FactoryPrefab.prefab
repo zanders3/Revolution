@@ -422,6 +422,7 @@ MonoBehaviour:
   Team: 0
   Health: 30
   SpawnPrefabs:
+  - {fileID: 114195492523326300, guid: caf1820d9a87a6f4abb2b15b83f42243, type: 2}
   - {fileID: 114461134259153370, guid: ca2ccd3a237538248b65b5534718d91c, type: 2}
   SpawnLocation: {fileID: 4628806793453290}
   SpawnEndLocation: {fileID: 4115529437443212}

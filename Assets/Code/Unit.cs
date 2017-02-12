@@ -10,17 +10,18 @@ public class Unit : UnitTarget
     public Material[] RedMaterials;
     public Material[] BlueMaterials;
     
-    public GameObject TankDeathPrefab, TankExplosion;
+    public GameObject TankDeathPrefab, TankExplosion, FireGunPrefab;
     public float AttackRadius = 10f, TurretMoveSpeed = 1f, ExplosionRadius = 3f;
     public Transform TurretTransform, CannonTip;
     public Shell Shell;
     public float TimeBetweenShots;
+    public int GunDamageAmount = 1;
     public int ExplosionDamageAmount = 1;
 
     public HealthUI HealthUI;
 
     Vector3 turretTransformEuler;
-    UnitAnimation tankAnim;
+    UnitAnimation unitAnim;
     Factory targetFactory;
 
 	public void Setup(Factory targetFactory, Team team, Vector3 spawnTargetLocation)
@@ -34,11 +35,13 @@ public class Unit : UnitTarget
         if (HealthUI)
             Instantiate(HealthUI, transform, false).Setup(this);
 
-        tankAnim = GetComponentInChildren<UnitAnimation>();
+        unitAnim = GetComponentInChildren<UnitAnimation>();
         turretTransformEuler = TurretTransform.eulerAngles;
 
         StartCoroutine(RunAI(spawnTargetLocation));
     }
+
+    Ray lastGunRay;
 
     void OnDrawGizmos()
     {
@@ -46,6 +49,8 @@ public class Unit : UnitTarget
         Gizmos.DrawWireSphere(transform.position, AttackRadius);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, ExplosionRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(lastGunRay);
     }
 
     void Update()
@@ -78,7 +83,7 @@ public class Unit : UnitTarget
     
     void LateUpdate()
     {
-        tankAnim.IsDriving = agent.velocity.magnitude > .4f;
+        unitAnim.IsDriving = agent.velocity.magnitude > .4f;
         if (TurretTransform != null)
             TurretTransform.eulerAngles = turretTransformEuler;
     }
@@ -160,14 +165,36 @@ public class Unit : UnitTarget
             //Fire projectile
             while (target != null)
             {
-                tankAnim.Shoot();
-                tankAnim.FireShell.RemoveAllListeners();
-                tankAnim.FireShell.AddListener(() =>
+                if (FireGunPrefab != null)
+                {
+                    Destroy(Instantiate(FireGunPrefab, CannonTip.position, Quaternion.LookRotation(-CannonTip.forward, Vector3.up)), 2f);
+                }
+
+                unitAnim.Shoot();
+                unitAnim.FireShell.RemoveAllListeners();
+                unitAnim.FireShell.AddListener(() =>
                 {
                     if (target != null)
                     {
                         Shell shell = Instantiate(Shell, CannonTip.position, CannonTip.rotation);
                         shell.Setup(target);
+                    }
+                });
+                unitAnim.FireGun.RemoveAllListeners();
+                unitAnim.FireGun.AddListener(() =>
+                {
+                    if (target != null)
+                    {
+                        lastGunRay = new Ray(CannonTip.position, -CannonTip.forward);
+                        foreach (RaycastHit hit in Physics.RaycastAll(lastGunRay))
+                        {
+                            UnitTarget hitTarget = hit.collider.GetComponent<UnitTarget>();
+                            if (hitTarget != null && hitTarget.Team != Team)
+                            {
+                                hitTarget.Damage(GunDamageAmount);
+                                break;
+                            }
+                        }
                     }
                 });
                 yield return new WaitForSeconds(TimeBetweenShots);

@@ -124,6 +124,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4539015913123508}
+  - component: {fileID: 114195492523326300}
+  - component: {fileID: 195227146936987280}
+  - component: {fileID: 136806764270682460}
   m_Layer: 0
   m_Name: LightTankPrefab
   m_TagString: Untagged
@@ -275,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4753859589961356}
   - component: {fileID: 95701084996707360}
+  - component: {fileID: 114712564032785790}
   m_Layer: 0
   m_Name: lightTank
   m_TagString: Untagged
@@ -493,7 +497,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1326134868133946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 11.06118, y: 3.3394607e-16, z: 4.396263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4753859589961356}
@@ -659,7 +663,7 @@ Animator:
   m_GameObject: {fileID: 1710379331221364}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f3ae0ab7c51562d4889e259d5599a792, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f21feda779fcc848b436185da974c8a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -667,6 +671,91 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114195492523326300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1326134868133946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c22b97912b114dda8227cfcaaa77d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Team: 0
+  Health: 4
+  RedMaterials:
+  - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
+  - {fileID: 2100000, guid: 4c9d9a2e028b8934aa49da3eb644701a, type: 2}
+  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
+  - {fileID: 2100000, guid: b9e6f12b15d7d2643af3e0924b9641e8, type: 2}
+  - {fileID: 2100000, guid: 1c915d6ce62e82442a1757b2ed91b3ba, type: 2}
+  - {fileID: 2100000, guid: 5625a6f895eb5b742b87aed995c93f26, type: 2}
+  - {fileID: 2100000, guid: 9c0ca6ba764746049afad0801fabb37a, type: 2}
+  - {fileID: 2100000, guid: 4079ba152cc595340bb79f8db94cd868, type: 2}
+  - {fileID: 2100000, guid: 1309804e6a48811408d307b660bf3f3b, type: 2}
+  - {fileID: 2100000, guid: 0553789d89c2c344d886a6eb1443fa5e, type: 2}
+  BlueMaterials:
+  - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
+  - {fileID: 2100000, guid: 2b40c792345c55c44b1d02293f0c8eaf, type: 2}
+  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
+  - {fileID: 2100000, guid: b9e6f12b15d7d2643af3e0924b9641e8, type: 2}
+  - {fileID: 2100000, guid: 1c915d6ce62e82442a1757b2ed91b3ba, type: 2}
+  - {fileID: 2100000, guid: 5625a6f895eb5b742b87aed995c93f26, type: 2}
+  - {fileID: 2100000, guid: 9c0ca6ba764746049afad0801fabb37a, type: 2}
+  - {fileID: 2100000, guid: 4079ba152cc595340bb79f8db94cd868, type: 2}
+  - {fileID: 2100000, guid: 1309804e6a48811408d307b660bf3f3b, type: 2}
+  - {fileID: 2100000, guid: 0553789d89c2c344d886a6eb1443fa5e, type: 2}
+  TankDeathPrefab: {fileID: 1452906676843262, guid: 1e03864e4a85d4e4fb2d1a3cab720135,
+    type: 2}
+  TankExplosion: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 2}
+  FireGunPrefab: {fileID: 1595786724943826, guid: 17bf2e03c652c5a419825901a3b7423c,
+    type: 2}
+  AttackRadius: 8
+  TurretMoveSpeed: 240
+  ExplosionRadius: 3
+  TurretTransform: {fileID: 4646752945953574}
+  CannonTip: {fileID: 4094256178734984}
+  Shell: {fileID: 114564555224115326, guid: 71e82d45ecca0d84db70fd90824f1f87, type: 2}
+  TimeBetweenShots: 1
+  GunDamageAmount: 1
+  ExplosionDamageAmount: 1
+  HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
+--- !u!114 &114712564032785790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710379331221364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c341de5a938cab345a8ca0aa2284d2fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireShell:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  FireGun:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!136 &136806764270682460
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1326134868133946}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.39
+  m_Height: 1.28
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.19, z: 0}
 --- !u!137 &137386122096207898
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -737,3 +826,23 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.007316065, z: -0.0024317903}
     m_Extent: {x: 0.019049108, y: 0.02078829, z: 0.023189679}
   m_DirtyAABB: 0
+--- !u!195 &195227146936987280
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1326134868133946}
+  m_Enabled: 1
+  m_Radius: 0.45
+  m_Speed: 3.5
+  m_Acceleration: 6
+  avoidancePriority: 50
+  m_AngularSpeed: 60
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.8
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

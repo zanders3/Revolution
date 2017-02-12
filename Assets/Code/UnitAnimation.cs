@@ -8,6 +8,7 @@ public class UnitAnimation : MonoBehaviour
     
     public bool IsDriving { set { animator.SetBool("Driving", value); } }
     public UnityEvent FireShell = new UnityEvent();
+    public UnityEvent FireGun = new UnityEvent();
 
     void Awake()
     {
@@ -22,6 +23,11 @@ public class UnitAnimation : MonoBehaviour
     void OnFireShell()
     {
         FireShell.Invoke();
+    }
+
+    void OnFireGun()
+    {
+        FireGun.Invoke();
     }
 }
 

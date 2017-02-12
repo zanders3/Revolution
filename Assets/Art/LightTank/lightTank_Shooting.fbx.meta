@@ -67,7 +67,82 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 42
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.35379496
+        functionName: OnFireGun
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/backWheel_L
+        weight: 1
+      - path: root/backWheel_R
+        weight: 1
+      - path: root/chassis
+        weight: 1
+      - path: root/chassis/hips
+        weight: 1
+      - path: root/chassis/hips/body
+        weight: 1
+      - path: root/chassis/hips/body/neckBase
+        weight: 1
+      - path: root/chassis/hips/body/neckBase/head
+        weight: 1
+      - path: root/chassis/hips/body/neckBase/shoulder_L
+        weight: 1
+      - path: root/chassis/hips/body/neckBase/shoulder_L/elbow_L
+        weight: 1
+      - path: root/chassis/hips/body/neckBase/shoulder_L/elbow_L/hand_L
+        weight: 1
+      - path: root/chassis/hips/body/neckBase/shoulder_R
+        weight: 1
+      - path: root/chassis/hips/body/neckBase/shoulder_R/elbow_R
+        weight: 1
+      - path: root/chassis/hips/body/neckBase/shoulder_R/elbow_R/hand_R
+        weight: 1
+      - path: root/chassis/hips/gun_rot
+        weight: 1
+      - path: root/chassis/hips/gun_rot/gun_base
+        weight: 1
+      - path: root/chassis/hips/gun_rot/gun_base/gun_tip
+        weight: 1
+      - path: root/frontWheel_L
+        weight: 1
+      - path: root/frontWheel_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
