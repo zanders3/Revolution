@@ -733,7 +733,7 @@ MonoBehaviour:
   Reward: 2
   Cost: 15
   RedKeyString: 3
-  BlueKeyString: 3
+  BlueKeyString: Num-3
   RedIcon: {fileID: 21300000, guid: c1c47ca12d721c241bf1784bc86f9692, type: 3}
   BlueIcon: {fileID: 21300000, guid: 5b79d7b6fc38d0b4aae90338654c9400, type: 3}
   HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
