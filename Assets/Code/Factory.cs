@@ -23,12 +23,6 @@ public class Factory : UnitTarget
             Instantiate(HealthUI, transform, false).Setup(this);
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, ExplosionRadius);
-    }
-
     void Update()
     {
         if (Health <= 0)

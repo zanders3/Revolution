@@ -3956,6 +3956,7 @@ GameObject:
   - component: {fileID: 790827225}
   - component: {fileID: 790827227}
   - component: {fileID: 790827226}
+  - component: {fileID: 790827228}
   m_Layer: 0
   m_Name: polySurface3
   m_TagString: Untagged
@@ -4022,6 +4023,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 790827224}
+  m_Mesh: {fileID: 4300422, guid: 2f2765c370d596d4e950ec9fd4518bf6, type: 3}
+--- !u!64 &790827228
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 790827224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300422, guid: 2f2765c370d596d4e950ec9fd4518bf6, type: 3}
 --- !u!1 &791875446
 GameObject:

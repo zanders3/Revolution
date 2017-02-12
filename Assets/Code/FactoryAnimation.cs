@@ -14,7 +14,10 @@ public class FactoryAnimation : MonoBehaviour
 
     public void DoSpawnAnimation()
     {
-        animator.ResetTrigger("SpawnUnit");
-        animator.SetTrigger("SpawnUnit");
+        if (animator != null)
+        {
+            animator.ResetTrigger("SpawnUnit");
+            animator.SetTrigger("SpawnUnit");
+        }
     }
 }

@@ -20,7 +20,7 @@ public class Unit : UnitTarget
     public HealthUI HealthUI;
 
     Vector3 turretTransformEuler;
-    TankAnimation tankAnim;
+    UnitAnimation tankAnim;
     Factory targetFactory;
 
 	public void Setup(Factory targetFactory, Team team, Vector3 spawnTargetLocation)
@@ -34,7 +34,7 @@ public class Unit : UnitTarget
         if (HealthUI)
             Instantiate(HealthUI, transform, false).Setup(this);
 
-        tankAnim = GetComponentInChildren<TankAnimation>();
+        tankAnim = GetComponentInChildren<UnitAnimation>();
         turretTransformEuler = TurretTransform.eulerAngles;
 
         StartCoroutine(RunAI(spawnTargetLocation));

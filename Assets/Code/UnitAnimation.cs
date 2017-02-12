@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
-public class TankAnimation : MonoBehaviour
+public class UnitAnimation : MonoBehaviour
 {
     Animator animator;
     
