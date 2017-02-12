@@ -440,6 +440,7 @@ MonoBehaviour:
   CannonTip: {fileID: 4826689116091152}
   Shell: {fileID: 114564555224115326, guid: 71e82d45ecca0d84db70fd90824f1f87, type: 2}
   TimeBetweenShots: 1
+  Reward: 2
   Cost: 20
   RedKeyString: 4
   BlueKeyString: 4
