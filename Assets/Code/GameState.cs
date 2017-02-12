@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +7,13 @@ public enum Team
 {
     Red,
     Blue
+}
+
+public enum GameStage
+{
+    Frontend,
+    Frog,
+    Gameplay
 }
 
 public class GameState : MonoBehaviour
@@ -18,6 +26,10 @@ public class GameState : MonoBehaviour
     public int CurrencyAwardAmount;
     public int CurrencyCap = 990;
     float CurrencyTimer;
+
+    GameStage currentStage = GameStage.Frontend;
+    public Animator FrontendAnimator;
+    public CanvasGroup FrontendUI, GameplayUI, FrogUI;
 
     [System.NonSerialized]
     public Unit[] UnitPrefabs;
@@ -42,20 +54,40 @@ public class GameState : MonoBehaviour
         BluePlayer.PlayerTeam = Team.Blue;
     }
 
+    IEnumerator MoveToGameplay()
+    {
+        currentStage = GameStage.Frog;
+        FrontendAnimator.SetBool("InGameplay", true);
+        yield return new WaitForSeconds(3f);
+        currentStage = GameStage.Gameplay;
+    }
+
     private void Update()
     {
-        // Award passive currency
-        CurrencyTimer -= Time.deltaTime;
-        while (CurrencyTimer <= 0.0f && CurrencyAwardTime > 0.0f)
-        {
-            CurrencyTimer += CurrencyAwardTime;
-            RedPlayer.Currency += CurrencyAwardAmount;
-            BluePlayer.Currency += CurrencyAwardAmount;
-        }
+        FrontendUI.alpha = Mathf.MoveTowards(FrontendUI.alpha, currentStage == GameStage.Frontend ? 1f : 0f, Time.deltaTime * 3f);
+        FrogUI.alpha = Mathf.MoveTowards(FrogUI.alpha, currentStage == GameStage.Frog ? 1f : 0f, Time.deltaTime * 8f);
+        GameplayUI.alpha = Mathf.MoveTowards(GameplayUI.alpha, currentStage == GameStage.Gameplay ? 1f : 0f, Time.deltaTime);
 
-        // Cap the currency to avoid numbers getting too large
-        RedPlayer.Currency = Mathf.Min(RedPlayer.Currency, CurrencyCap);
-        BluePlayer.Currency = Mathf.Min(BluePlayer.Currency, CurrencyCap);
+        if (currentStage == GameStage.Frontend)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                StartCoroutine(MoveToGameplay());
+        }
+        else if (currentStage == GameStage.Gameplay)
+        {
+            // Award passive currency
+            CurrencyTimer -= Time.deltaTime;
+            while (CurrencyTimer <= 0.0f && CurrencyAwardTime > 0.0f)
+            {
+                CurrencyTimer += CurrencyAwardTime;
+                RedPlayer.Currency += CurrencyAwardAmount;
+                BluePlayer.Currency += CurrencyAwardAmount;
+            }
+
+            // Cap the currency to avoid numbers getting too large
+            RedPlayer.Currency = Mathf.Min(RedPlayer.Currency, CurrencyCap);
+            BluePlayer.Currency = Mathf.Min(BluePlayer.Currency, CurrencyCap);
+        }
     }
 
     public PlayerController GetPlayerController(Team playerTeam)
