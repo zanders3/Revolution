@@ -16,6 +16,7 @@ public class GameState : MonoBehaviour
     public int StartingCurrency;
     public float CurrencyAwardTime;
     public int CurrencyAwardAmount;
+    public int CurrencyCap = 990;
     float CurrencyTimer;
 
     public static GameState Instance;
@@ -44,6 +45,10 @@ public class GameState : MonoBehaviour
             RedPlayer.Currency += CurrencyAwardAmount;
             BluePlayer.Currency += CurrencyAwardAmount;
         }
+
+        // Cap the currency to avoid numbers getting too large
+        RedPlayer.Currency = Mathf.Min(RedPlayer.Currency, CurrencyCap);
+        BluePlayer.Currency = Mathf.Min(BluePlayer.Currency, CurrencyCap);
     }
 
     public PlayerController GetPlayerController(Team playerTeam)
