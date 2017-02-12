@@ -9,7 +9,7 @@ public class Factory : UnitTarget
 	public Unit[] SpawnPrefabs;
     public Transform SpawnLocation, SpawnEndLocation;
     public Factory TargetFactory;
-    
+    public AudioClip SpawnClip;
     public HealthUI HealthUI;
     public GameObject LargeExplosionPrefab;
     public float ExplosionRadius;
@@ -65,6 +65,10 @@ public class Factory : UnitTarget
     public void SpawnUnit(int unitType)
     {
         factoryAnim.DoSpawnAnimation();
+        if (SpawnClip != null)
+        {
+            AudioSource.PlayClipAtPoint(SpawnClip, transform.position);
+        }
         StartCoroutine(DoSpawnUnit(unitType));
     }
 }

@@ -11,6 +11,8 @@ public class Unit : UnitTarget
     public Material[] BlueMaterials;
     
     public GameObject TankDeathPrefab, TankExplosion, FireGunPrefab;
+    public AudioClip[] ExplosionClips;
+    public AudioClip FireGunClip;
     public float AttackRadius = 10f, TurretMoveSpeed = 1f, ExplosionRadius = 3f;
     public Transform TurretTransform, CannonTip;
     public Shell Shell;
@@ -79,7 +81,15 @@ public class Unit : UnitTarget
             }
 
             if (TankExplosion != null)
+            {
                 Destroy(Instantiate(TankExplosion, transform.position, transform.rotation), 1.5f);
+                int numExplosionClips = ExplosionClips.Length;
+                if (numExplosionClips > 0)
+                {
+                    int clipIdx = UnityEngine.Random.Range(0, numExplosionClips - 1);
+                    AudioSource.PlayClipAtPoint(ExplosionClips[clipIdx], transform.position);
+                }
+            }
             if (TankDeathPrefab != null)
             {
                 GameObject tankDeath = Instantiate(TankDeathPrefab, transform.position, transform.rotation);
@@ -192,6 +202,10 @@ public class Unit : UnitTarget
                 if (FireGunPrefab != null)
                 {
                     Destroy(Instantiate(FireGunPrefab, CannonTip.position, Quaternion.LookRotation(-CannonTip.forward, Vector3.up)), 2f);
+                    if (FireGunClip != null)
+                    {
+                        AudioSource.PlayClipAtPoint(FireGunClip, transform.position);
+                    }
                 }
 
                 unitAnim.Shoot();
