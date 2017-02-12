@@ -2502,12 +2502,15 @@ MonoBehaviour:
   BluePlayer: {fileID: 469104896}
   StartingCurrency: 30
   CurrencyAwardTime: 1
-  CurrencyAwardAmount: 5
+  CurrencyAwardAmount: 2
   CurrencyCap: 500
   FrontendAnimator: {fileID: 2056703624}
   FrontendUI: {fileID: 116573693}
   GameplayUI: {fileID: 1289146732}
   FrogUI: {fileID: 725573262}
+  GameOverUI: {fileID: 725573265}
+  RedWon: {fileID: 725573264}
+  BlueWon: {fileID: 725573263}
 --- !u!4 &469104895
 Transform:
   m_ObjectHideFlags: 0
@@ -3714,57 +3717,29 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224195771906916936, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 59
-      objectReference: {fileID: 0}
-    - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 037393340f26b0d4a9b03858905f40ff, type: 2}
   m_IsPrefabParent: 0
 --- !u!225 &725573262 stripped
 CanvasGroup:
   m_PrefabParentObject: {fileID: 225375696879807252, guid: 037393340f26b0d4a9b03858905f40ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 725573261}
+--- !u!114 &725573263 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114444432172939502, guid: 037393340f26b0d4a9b03858905f40ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 725573261}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &725573264 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114619215446263530, guid: 037393340f26b0d4a9b03858905f40ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 725573261}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!225 &725573265 stripped
+CanvasGroup:
+  m_PrefabParentObject: {fileID: 225830677360044484, guid: 037393340f26b0d4a9b03858905f40ff,
     type: 2}
   m_PrefabInternal: {fileID: 725573261}
 --- !u!1 &729226857
@@ -14094,7 +14069,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ShadowRadius: 0
