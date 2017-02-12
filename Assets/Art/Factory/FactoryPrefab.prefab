@@ -434,6 +434,7 @@ MonoBehaviour:
   SpawnLocation: {fileID: 4628806793453290}
   SpawnEndLocation: {fileID: 4115529437443212}
   TargetFactory: {fileID: 0}
+  SpawnClip: {fileID: 8300000, guid: 44fa73badf851c843891ee25325db412, type: 3}
   HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
   LargeExplosionPrefab: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
     type: 2}
