@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+public class OnSpawnUnit : UnityEvent<int> { }
 
 public class PlayerController : MonoBehaviour {
 
@@ -24,6 +27,9 @@ public class PlayerController : MonoBehaviour {
     public string SpawnInputString1;
     public string SpawnInputString2;
     public string SpawnInputString3;
+
+    [System.NonSerialized]
+    public OnSpawnUnit OnSpawnUnit = new OnSpawnUnit();
 
     // Use this for initialization
     void Start ()
@@ -124,6 +130,7 @@ public class PlayerController : MonoBehaviour {
                 {
                     Currency -= unitCost;
                     FactoryList[SelectedFactoryIdx].SpawnUnit(unitType);
+                    OnSpawnUnit.Invoke(unitType);
                 }
             }
         }

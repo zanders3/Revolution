@@ -27,7 +27,7 @@ public class GameState : MonoBehaviour
     public int CurrencyCap = 990;
     float CurrencyTimer;
 
-    GameStage currentStage = GameStage.Frontend;
+    GameStage currentStage = GameStage.Gameplay;
     public Animator FrontendAnimator;
     public CanvasGroup FrontendUI, GameplayUI, FrogUI;
 
@@ -48,6 +48,8 @@ public class GameState : MonoBehaviour
 
     private void Start()
     {
+        FrontendAnimator.SetBool("InGameplay", true);
+
         RedPlayer.Currency = StartingCurrency;
         BluePlayer.Currency = StartingCurrency;
         RedPlayer.PlayerTeam = Team.Red;
