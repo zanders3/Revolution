@@ -13,6 +13,7 @@ public enum Team
 
 public enum GameStage
 {
+    FullscreenFade,
     Frontend,
     Frog,
     Gameplay,
@@ -29,10 +30,11 @@ public class GameState : MonoBehaviour
     public int CurrencyAwardAmount;
     public int CurrencyCap = 990;
     float CurrencyTimer;
+    bool reloadScene = false;
 
-    GameStage currentStage = GameStage.Frontend;
+    GameStage currentStage = GameStage.FullscreenFade;
     public Animator FrontendAnimator;
-    public CanvasGroup FrontendUI, GameplayUI, FrogUI, GameOverUI;
+    public CanvasGroup FrontendUI, GameplayUI, FrogUI, GameOverUI, FullscreenUI;
 
     public Image RedWon, BlueWon;
 
@@ -83,8 +85,18 @@ public class GameState : MonoBehaviour
         FrogUI.alpha = Mathf.MoveTowards(FrogUI.alpha, currentStage == GameStage.Frog ? 1f : 0f, Time.deltaTime * 8f);
         GameplayUI.alpha = Mathf.MoveTowards(GameplayUI.alpha, currentStage == GameStage.Gameplay ? 1f : 0f, Time.deltaTime);
         GameOverUI.alpha = Mathf.MoveTowards(GameOverUI.alpha, currentStage == GameStage.GameOver ? 1f : 0f, Time.deltaTime);
+        FullscreenUI.alpha = Mathf.MoveTowards(FullscreenUI.alpha, currentStage == GameStage.FullscreenFade ? 1f : 0f, Time.deltaTime);
 
-        if (currentStage == GameStage.Frontend)
+        if (currentStage == GameStage.FullscreenFade)
+        {
+            if (FullscreenUI.alpha >= 1f)
+            {
+                if (reloadScene)
+                    SceneManager.LoadScene(0);
+                currentStage = GameStage.Frontend;
+            }
+        }
+        else if (currentStage == GameStage.Frontend)
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 StartCoroutine(MoveToGameplay());
@@ -119,7 +131,10 @@ public class GameState : MonoBehaviour
         else if (currentStage == GameStage.GameOver)
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                SceneManager.LoadScene(0);
+            {
+                currentStage = GameStage.FullscreenFade;
+                reloadScene = true;
+            }
         }
     }
 

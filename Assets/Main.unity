@@ -2509,6 +2509,7 @@ MonoBehaviour:
   GameplayUI: {fileID: 1289146732}
   FrogUI: {fileID: 725573262}
   GameOverUI: {fileID: 725573265}
+  FullscreenUI: {fileID: 0}
   RedWon: {fileID: 725573264}
   BlueWon: {fileID: 725573263}
 --- !u!4 &469104895
@@ -3716,6 +3717,46 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 037393340f26b0d4a9b03858905f40ff, type: 2}
