@@ -15,8 +15,6 @@ public class Unit : UnitTarget
     public Transform TurretTransform, CannonTip;
     public Shell Shell;
     public float TimeBetweenShots;
-    public int GunDamageAmount = 1;
-    public int ExplosionDamageAmount = 1;
 
     public int Cost = 20;
     public string RedKeyString = "1";
@@ -70,10 +68,10 @@ public class Unit : UnitTarget
                 Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius);
                 for (int i = 0; i < colliders.Length; i++)
                 {
-                    Unit tank = colliders[i].GetComponent<Unit>();
-                    if (tank != null)
+                    Unit target = colliders[i].GetComponent<Unit>();
+                    if (target != null)
                     {
-                        tank.Damage(ExplosionDamageAmount);
+                        target.Damage(DamageType.Explosion);
                     }
                 }
             }
@@ -209,7 +207,7 @@ public class Unit : UnitTarget
                 {
                     if (target != null)
                     {
-                        target.Damage(GunDamageAmount);
+                        target.Damage(DamageType.Gun);
                     }
                 });
                 yield return new WaitForSeconds(TimeBetweenShots);

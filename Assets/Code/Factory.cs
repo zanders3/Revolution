@@ -33,7 +33,7 @@ public class Factory : UnitTarget
             {
                 UnitTarget target = collider.GetComponent<UnitTarget>();
                 if (target != null)
-                    target.Damage(1000);
+                    target.Damage(DamageType.FactoryExplosion);
             }
             
             Destroy(gameObject);
