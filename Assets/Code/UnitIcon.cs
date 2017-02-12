@@ -10,13 +10,11 @@ public class UnitIcon : MonoBehaviour
     public Text CostText;
     public Text Key;
 
-    int m_unitType;
     int m_cost;
     Team m_team;
 
-    public void Setup(Unit unit, Team team, int unitType)
+    public void Setup(Unit unit, Team team)
     {
-        m_unitType = unitType;
         m_cost = unit.Cost;
         m_team = team;
         CostText.text = m_cost.ToString();

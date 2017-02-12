@@ -16,11 +16,14 @@ public class Unit : UnitTarget
     public Shell Shell;
     public float TimeBetweenShots;
 
+    public int Reward = 1;
     public int Cost = 20;
     public string RedKeyString = "1";
     public string BlueKeyString = "1";
     public Sprite RedIcon;
     public Sprite BlueIcon;
+
+    Team m_team;
 
     public HealthUI HealthUI;
     public bool UseTurretRotationOffset = false;
@@ -33,6 +36,7 @@ public class Unit : UnitTarget
 
 	public void Setup(Factory targetFactory, Team team, Vector3 spawnTargetLocation)
     {
+        m_team = team;
         this.targetFactory = targetFactory;
         Team = team;
         GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
@@ -63,6 +67,8 @@ public class Unit : UnitTarget
     {
         if (Health <= 0)
         {
+            Team enemyTeam = m_team == Team.Red ? Team.Blue : Team.Red;
+            GameState.Instance.AwardCurrency(Reward, enemyTeam);
             if (ExplosionRadius > 0f)
             {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius);

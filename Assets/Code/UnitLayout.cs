@@ -13,10 +13,10 @@ public class UnitLayout : MonoBehaviour
         int NumUnits = GameState.Instance.UnitPrefabs.Length;
         if (NumUnits > 0 && FirstIcon != null)
         {
-            FirstIcon.Setup(GameState.Instance.UnitPrefabs[0], team, 0);
+            FirstIcon.Setup(GameState.Instance.UnitPrefabs[0], team);
             for (int i = 1; i < NumUnits; ++i)
             {
-                Instantiate(FirstIcon, transform).Setup(GameState.Instance.UnitPrefabs[i], team, i);
+                Instantiate(FirstIcon, transform).Setup(GameState.Instance.UnitPrefabs[i], team);
             }
         }
 	}
