@@ -424,6 +424,7 @@ MonoBehaviour:
   GunDamageTaken: 1
   ExplosionDamageTaken: 1
   ShellDamageTaken: 1
+  ShellExplosionDamageTaken: 1
   FactoryExplosionDamageTaken: 1000
   SpawnPrefabs:
   - {fileID: 114797676054722456, guid: 65a5a710b5d77ed4986dafc0c0fc0213, type: 2}

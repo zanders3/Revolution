@@ -16509,7 +16509,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1812055304264316}
-  m_LocalRotation: {x: -0.09317882, y: 0.68184525, z: 0.6627334, w: 0.29527852}
+  m_LocalRotation: {x: -0.093178816, y: 0.6818452, z: 0.6627333, w: 0.2952785}
   m_LocalPosition: {x: 0.6666701, y: 1.329045, z: -0.00042602367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -18259,10 +18259,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
-  Health: 4
-  GunDamageTaken: 1
-  ExplosionDamageTaken: 1
-  ShellDamageTaken: 1
+  Health: 9
+  GunDamageTaken: 3
+  ExplosionDamageTaken: 9
+  ShellDamageTaken: 2
+  ShellExplosionDamageTaken: 1
   FactoryExplosionDamageTaken: 1000
   RedMaterials:
   - {fileID: 2100000, guid: 18ac7639cb15eff4f8ee3a0ebb56b4e3, type: 2}
@@ -18283,14 +18284,14 @@ MonoBehaviour:
   TankDeathPrefab: {fileID: 0}
   TankExplosion: {fileID: 0}
   FireGunPrefab: {fileID: 0}
-  AttackRadius: 8
+  AttackRadius: 6
   TurretMoveSpeed: 240
   ExplosionRadius: 0
   TurretTransform: {fileID: 4403645091298854}
   CannonTip: {fileID: 4635008656657974}
   Shell: {fileID: 114564555224115326, guid: 8aa415569bb101f48902a544f10af60f, type: 2}
   TimeBetweenShots: 1
-  Cost: 20
+  Cost: 10
   RedKeyString: 2
   BlueKeyString: 2
   RedIcon: {fileID: 21300000, guid: 6a5a45cf91ea04247a83a81a834f795e, type: 3}
@@ -18504,7 +18505,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1811131384650446}
   m_Enabled: 1
   m_Radius: 0.35
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 6
   avoidancePriority: 50
   m_AngularSpeed: 60
