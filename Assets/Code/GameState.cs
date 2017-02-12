@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum Team
 {
@@ -13,7 +15,8 @@ public enum GameStage
 {
     Frontend,
     Frog,
-    Gameplay
+    Gameplay,
+    GameOver
 }
 
 public class GameState : MonoBehaviour
@@ -29,7 +32,9 @@ public class GameState : MonoBehaviour
 
     GameStage currentStage = GameStage.Frontend;
     public Animator FrontendAnimator;
-    public CanvasGroup FrontendUI, GameplayUI, FrogUI;
+    public CanvasGroup FrontendUI, GameplayUI, FrogUI, GameOverUI;
+
+    public Image RedWon, BlueWon;
 
     [System.NonSerialized]
     public Unit[] UnitPrefabs;
@@ -62,11 +67,22 @@ public class GameState : MonoBehaviour
         currentStage = GameStage.Gameplay;
     }
 
+    int NumAliveFactories(List<Factory> factoryList)
+    {
+        int count = 0;
+        for (int i = 0; i < factoryList.Count; i++)
+            if (factoryList[i] != null)
+                count++;
+
+        return count;
+    }
+
     void Update()
     {
         FrontendUI.alpha = Mathf.MoveTowards(FrontendUI.alpha, currentStage == GameStage.Frontend ? 1f : 0f, Time.deltaTime * 3f);
         FrogUI.alpha = Mathf.MoveTowards(FrogUI.alpha, currentStage == GameStage.Frog ? 1f : 0f, Time.deltaTime * 8f);
         GameplayUI.alpha = Mathf.MoveTowards(GameplayUI.alpha, currentStage == GameStage.Gameplay ? 1f : 0f, Time.deltaTime);
+        GameOverUI.alpha = Mathf.MoveTowards(GameOverUI.alpha, currentStage == GameStage.GameOver ? 1f : 0f, Time.deltaTime);
 
         if (currentStage == GameStage.Frontend)
         {
@@ -75,14 +91,35 @@ public class GameState : MonoBehaviour
         }
         else if (currentStage == GameStage.Gameplay)
         {
+            //Game over detection
+            int numRedFactories = NumAliveFactories(RedPlayer.FactoryList);
+            int numBlueFactories = NumAliveFactories(BluePlayer.FactoryList);
+            if (numRedFactories <= 0)
+            {
+                RedWon.gameObject.SetActive(false);
+                BlueWon.gameObject.SetActive(true);
+                currentStage = GameStage.GameOver;
+            }
+            else if (numBlueFactories <= 0)
+            {
+                RedWon.gameObject.SetActive(true);
+                BlueWon.gameObject.SetActive(false);
+                currentStage = GameStage.GameOver;
+            }
+
             // Award passive currency
             CurrencyTimer -= Time.deltaTime;
             while (CurrencyTimer <= 0.0f && CurrencyAwardTime > 0.0f)
             {
                 CurrencyTimer += CurrencyAwardTime;
-                AwardCurrency(CurrencyAwardAmount, Team.Red);
-                AwardCurrency(CurrencyAwardAmount, Team.Blue);
+                AwardCurrency(CurrencyAwardAmount * numRedFactories, Team.Red);
+                AwardCurrency(CurrencyAwardAmount * numBlueFactories, Team.Blue);
             }
+        }
+        else if (currentStage == GameStage.GameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                SceneManager.LoadScene(0);
         }
     }
 
