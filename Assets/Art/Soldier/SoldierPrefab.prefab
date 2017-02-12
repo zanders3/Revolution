@@ -18274,6 +18274,8 @@ MonoBehaviour:
   GunDamageAmount: 1
   ExplosionDamageAmount: 1
   HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
+  UseTurretRotationOffset: 1
+  RotationOffset: {x: 0, y: 10, z: 10}
 --- !u!136 &136058368458851250
 CapsuleCollider:
   m_ObjectHideFlags: 1
