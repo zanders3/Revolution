@@ -36,7 +36,8 @@ public class Unit : UnitTarget
             Instantiate(HealthUI, transform, false).Setup(this);
 
         unitAnim = GetComponentInChildren<UnitAnimation>();
-        turretTransformEuler = TurretTransform.eulerAngles;
+        if (TurretTransform != null)
+            turretTransformEuler = TurretTransform.eulerAngles;
 
         StartCoroutine(RunAI(spawnTargetLocation));
     }
@@ -57,33 +58,41 @@ public class Unit : UnitTarget
     {
         if (Health <= 0)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius);
-            for (int i = 0; i < colliders.Length; i++)
+            if (ExplosionRadius > 0f)
             {
-                Unit tank = colliders[i].GetComponent<Unit>();
-                if (tank != null)
+                Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius);
+                for (int i = 0; i < colliders.Length; i++)
                 {
-                    tank.Damage(ExplosionDamageAmount);
+                    Unit tank = colliders[i].GetComponent<Unit>();
+                    if (tank != null)
+                    {
+                        tank.Damage(ExplosionDamageAmount);
+                    }
                 }
             }
 
-            Destroy(Instantiate(TankExplosion, transform.position, transform.rotation), 1.5f);
-            GameObject tankDeath = Instantiate(TankDeathPrefab, transform.position, transform.rotation);
-            foreach (Transform explosionPiece in tankDeath.transform)
+            if (TankExplosion != null)
+                Destroy(Instantiate(TankExplosion, transform.position, transform.rotation), 1.5f);
+            if (TankDeathPrefab != null)
             {
-                explosionPiece.transform.parent = null;
-                explosionPiece.GetComponent<Rigidbody>().AddExplosionForce(500f, transform.position, ExplosionRadius);
-                explosionPiece.GetComponent<MeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
-                Destroy(explosionPiece.gameObject, 4f);
+                GameObject tankDeath = Instantiate(TankDeathPrefab, transform.position, transform.rotation);
+                foreach (Transform explosionPiece in tankDeath.transform)
+                {
+                    explosionPiece.transform.parent = null;
+                    explosionPiece.GetComponent<Rigidbody>().AddExplosionForce(500f, transform.position, ExplosionRadius);
+                    explosionPiece.GetComponent<MeshRenderer>().sharedMaterials = Team == Team.Red ? RedMaterials : BlueMaterials;
+                    Destroy(explosionPiece.gameObject, 4f);
+                }
+                Destroy(tankDeath);
             }
-            Destroy(tankDeath);
             Destroy(gameObject);
         }
     }
     
     void LateUpdate()
     {
-        unitAnim.IsDriving = agent.velocity.magnitude > .4f;
+        if (agent != null)
+            unitAnim.IsDriving = agent.velocity.magnitude > .4f;
         if (TurretTransform != null)
             TurretTransform.eulerAngles = turretTransformEuler;
     }

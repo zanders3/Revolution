@@ -5300,6 +5300,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4641521769398146}
+  - component: {fileID: 136058368458851250}
+  - component: {fileID: 195564743354443936}
+  - component: {fileID: 114797676054722456}
   m_Layer: 0
   m_Name: SoldierPrefab
   m_TagString: Untagged
@@ -5842,6 +5845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4752507749429380}
   - component: {fileID: 95544294194110306}
+  - component: {fileID: 114093599165386166}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -7869,6 +7873,21 @@ GameObject:
   - component: {fileID: 4785238853629016}
   m_Layer: 0
   m_Name: Spine1Part1_M
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1836194593503364
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4574275617839356}
+  m_Layer: 0
+  m_Name: GunTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13017,7 +13036,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305652043587482}
-  m_LocalRotation: {x: -0.09317882, y: 0.68184525, z: 0.6627334, w: 0.29527852}
+  m_LocalRotation: {x: -0.093178816, y: 0.6818452, z: 0.6627333, w: 0.2952785}
   m_LocalPosition: {x: 0.6666701, y: 1.329045, z: -0.00042602367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -13895,6 +13914,7 @@ Transform:
   - {fileID: 4512645371413590}
   - {fileID: 4426613281846810}
   - {fileID: 4386542798625706}
+  - {fileID: 4574275617839356}
   m_Father: {fileID: 4785551309645028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14939,6 +14959,19 @@ Transform:
   - {fileID: 4225456161603732}
   m_Father: {fileID: 4410437452541446}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4574275617839356
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836194593503364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.106, y: 0.316, z: -0.182}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4447538158456294}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4576959151704124
 Transform:
@@ -16265,8 +16298,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1610027052864952}
   m_LocalRotation: {x: 0.49999997, y: -0.49999997, z: -0.50000006, w: 0.5000001}
-  m_LocalPosition: {x: 0, y: 0.634, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0, y: 0.367, z: -0.349}
+  m_LocalScale: {x: 0.48995304, y: 0.4899531, z: 0.4899531}
   m_Children:
   - {fileID: 4078018630650192}
   - {fileID: 4431796821706832}
@@ -18185,6 +18218,75 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114093599165386166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1610027052864952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c341de5a938cab345a8ca0aa2284d2fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireShell:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  FireGun:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114797676054722456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1548920247201192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c22b97912b114dda8227cfcaaa77d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Team: 0
+  Health: 4
+  RedMaterials:
+  - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
+  - {fileID: 2100000, guid: 4c9d9a2e028b8934aa49da3eb644701a, type: 2}
+  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
+  BlueMaterials:
+  - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
+  - {fileID: 2100000, guid: 2b40c792345c55c44b1d02293f0c8eaf, type: 2}
+  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
+  TankDeathPrefab: {fileID: 0}
+  TankExplosion: {fileID: 0}
+  FireGunPrefab: {fileID: 1595786724943826, guid: 17bf2e03c652c5a419825901a3b7423c,
+    type: 2}
+  AttackRadius: 8
+  TurretMoveSpeed: 240
+  ExplosionRadius: 0
+  TurretTransform: {fileID: 4347593835522104}
+  CannonTip: {fileID: 4574275617839356}
+  Shell: {fileID: 0}
+  TimeBetweenShots: 1
+  GunDamageAmount: 1
+  ExplosionDamageAmount: 1
+  HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
+--- !u!136 &136058368458851250
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1548920247201192}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.35
+  m_Height: 1.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.19, z: 0}
 --- !u!137 &137057215855467282
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -18349,3 +18451,23 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.5410968, y: 0.1369077, z: -0.06341204}
     m_Extent: {x: 0.59350383, y: 0.4259078, z: 0.27778542}
   m_DirtyAABB: 0
+--- !u!195 &195564743354443936
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1548920247201192}
+  m_Enabled: 1
+  m_Radius: 0.35
+  m_Speed: 3.5
+  m_Acceleration: 6
+  avoidancePriority: 50
+  m_AngularSpeed: 60
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.9
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
