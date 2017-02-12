@@ -13,7 +13,6 @@ public class Factory : UnitTarget
     public HealthUI HealthUI;
     public GameObject LargeExplosionPrefab;
     public float ExplosionRadius;
-    public bool FlipInstantiation = false;
 
     FactoryAnimation factoryAnim;
 
@@ -54,9 +53,7 @@ public class Factory : UnitTarget
         yield return new WaitForSeconds(.27f);
 
         Quaternion spawnRot = SpawnLocation.rotation;
-        if (FlipInstantiation)
-            spawnRot = spawnRot * Quaternion.Euler(0f, 180f, 0f);
-
+        
         Unit newUnit = Instantiate(SpawnPrefabs[unitType], SpawnLocation.position, spawnRot);
         newUnit.Setup(
             FindTargetFactory(),

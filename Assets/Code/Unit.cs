@@ -51,16 +51,12 @@ public class Unit : UnitTarget
         StartCoroutine(RunAI(spawnTargetLocation));
     }
 
-    Ray lastGunRay;
-
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, AttackRadius);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, ExplosionRadius);
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(lastGunRay);
     }
 
     void Update()
