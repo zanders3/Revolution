@@ -16298,7 +16298,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1610027052864952}
   m_LocalRotation: {x: 0.49999997, y: -0.49999997, z: -0.50000006, w: 0.5000001}
-  m_LocalPosition: {x: -0, y: 0.367, z: -0.349}
+  m_LocalPosition: {x: -0, y: 0.19, z: -0.349}
   m_LocalScale: {x: 0.48995304, y: 0.4899531, z: 0.4899531}
   m_Children:
   - {fileID: 4078018630650192}
@@ -18253,12 +18253,20 @@ MonoBehaviour:
   Team: 0
   Health: 4
   RedMaterials:
-  - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
-  - {fileID: 2100000, guid: 4c9d9a2e028b8934aa49da3eb644701a, type: 2}
+  - {fileID: 2100000, guid: 18ac7639cb15eff4f8ee3a0ebb56b4e3, type: 2}
+  - {fileID: 2100000, guid: bf4c2212b86b2f54faab9ce24dcad683, type: 2}
+  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
+  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
+  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
+  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
   - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
   BlueMaterials:
-  - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
-  - {fileID: 2100000, guid: 2b40c792345c55c44b1d02293f0c8eaf, type: 2}
+  - {fileID: 2100000, guid: 18ac7639cb15eff4f8ee3a0ebb56b4e3, type: 2}
+  - {fileID: 2100000, guid: bf4c2212b86b2f54faab9ce24dcad683, type: 2}
+  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
+  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
+  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
+  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
   - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
   TankDeathPrefab: {fileID: 0}
   TankExplosion: {fileID: 0}
@@ -18267,6 +18275,7 @@ MonoBehaviour:
   AttackRadius: 8
   TurretMoveSpeed: 240
   ExplosionRadius: 0
+  Cost: 20
   TurretTransform: {fileID: 4347593835522104}
   CannonTip: {fileID: 4574275617839356}
   Shell: {fileID: 0}

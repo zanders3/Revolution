@@ -204,7 +204,7 @@ public class Unit : UnitTarget
                 {
                     if (target != null)
                     {
-                        lastGunRay = new Ray(CannonTip.position, -CannonTip.forward);
+                        lastGunRay = new Ray(CannonTip.position, (target.transform.position - CannonTip.position).normalized);
                         foreach (RaycastHit hit in Physics.RaycastAll(lastGunRay))
                         {
                             UnitTarget hitTarget = hit.collider.GetComponent<UnitTarget>();
