@@ -1,13 +1,30 @@
 ﻿
 using UnityEngine;
 
+public enum DamageType
+{
+    Gun, Explosion, Shell, FactoryExplosion
+}
+
 public abstract class UnitTarget : MonoBehaviour
 {
     public Team Team;
     public int Health;
 
-    public void Damage(int amount)
+    public int GunDamageTaken = 1;
+    public int ExplosionDamageTaken = 1;
+    public int ShellDamageTaken = 1;
+    public int FactoryExplosionDamageTaken = 1000;
+
+    public void Damage(DamageType type)
     {
-        Health -= amount;
+        if (type == DamageType.Gun)
+            Health -= GunDamageTaken;
+        else if (type == DamageType.Explosion)
+            Health -= ExplosionDamageTaken;
+        else if (type == DamageType.Shell)
+            Health -= ShellDamageTaken;
+        else if (type == DamageType.FactoryExplosion)
+            Health -= FactoryExplosionDamageTaken;
     }
 }

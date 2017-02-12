@@ -37,7 +37,7 @@ public class Shell : MonoBehaviour
         if (currentDistance >= distanceToTarget)
         {
             if (target != null)
-                target.Damage(DamageAmount);
+                target.Damage(DamageType.Shell);
 
             Destroy(gameObject);
         }
