@@ -6,10 +6,10 @@ public class Shell : MonoBehaviour
 {
     Vector3 firePosition, targetPosition;
     UnitTarget target;
-
-    public int DamageAmount = 1;
-
+    
     public float MoveSpeed;
+    public float ShellExplosionRadius = 2f;
+
     public AnimationCurve YOffset;
     float distanceToTarget;
     float currentDistance;
@@ -25,6 +25,12 @@ public class Shell : MonoBehaviour
         currentDistance = 0f;
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, ShellExplosionRadius);
+    }
+
     void Update()
     {
         currentDistance += Time.deltaTime * MoveSpeed;
@@ -38,6 +44,15 @@ public class Shell : MonoBehaviour
         {
             if (target != null)
                 target.Damage(DamageType.Shell);
+
+            foreach (Collider collider in Physics.OverlapSphere(transform.position, ShellExplosionRadius))
+            {
+                UnitTarget target = collider.GetComponent<UnitTarget>();
+                if (target != null)
+                {
+                    target.Damage(DamageType.ShellExplosion);
+                }
+            }
 
             Destroy(gameObject);
         }
