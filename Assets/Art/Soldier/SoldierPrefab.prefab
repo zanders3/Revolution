@@ -13036,7 +13036,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305652043587482}
-  m_LocalRotation: {x: -0.093178816, y: 0.6818452, z: 0.6627333, w: 0.2952785}
+  m_LocalRotation: {x: -0.09317882, y: 0.68184525, z: 0.6627334, w: 0.29527852}
   m_LocalPosition: {x: 0.6666701, y: 1.329045, z: -0.00042602367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -18254,7 +18254,7 @@ MonoBehaviour:
   Health: 9
   GunDamageTaken: 3
   ExplosionDamageTaken: 6
-  ShellDamageTaken: 2
+  ShellDamageTaken: 1
   ShellExplosionDamageTaken: 1
   FactoryExplosionDamageTaken: 1000
   RedMaterials:
@@ -18283,7 +18283,7 @@ MonoBehaviour:
   TurretTransform: {fileID: 4347593835522104}
   CannonTip: {fileID: 4574275617839356}
   Shell: {fileID: 0}
-  TimeBetweenShots: 0.5
+  TimeBetweenShots: 1
   Cost: 5
   RedKeyString: 1
   BlueKeyString: 1
