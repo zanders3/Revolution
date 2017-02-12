@@ -2384,9 +2384,12 @@ MonoBehaviour:
   - {fileID: 101917934}
   SelectionIndicatorPrefab: {fileID: 1420839479345140, guid: 01a26ecfa84761544992b357c4a03c1c,
     type: 2}
-  UpInputString: UpKey
-  DownInputString: DownKey
-  SpawnInputString0: BlueSpawnTank
+  UpInputString: BlueUp
+  DownInputString: BlueDown
+  SpawnInputString0: BlueSpawn0
+  SpawnInputString1: BlueSpawn1
+  SpawnInputString2: BlueSpawn2
+  SpawnInputString3: BlueSpawn3
 --- !u!114 &469104897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2404,9 +2407,12 @@ MonoBehaviour:
   - {fileID: 101025549}
   SelectionIndicatorPrefab: {fileID: 1000955555737708, guid: 9f6e61721f5e113418e58d99be8b2003,
     type: 2}
-  UpInputString: WKey
-  DownInputString: SKey
-  SpawnInputString0: RedSpawnTank
+  UpInputString: RedUp
+  DownInputString: RedDown
+  SpawnInputString0: RedSpawn0
+  SpawnInputString1: RedSpawn1
+  SpawnInputString2: RedSpawn2
+  SpawnInputString3: RedSpawn3
 --- !u!1 &470426018
 GameObject:
   m_ObjectHideFlags: 0
