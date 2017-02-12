@@ -715,13 +715,17 @@ MonoBehaviour:
   AttackRadius: 6
   TurretMoveSpeed: 240
   ExplosionRadius: 3
-  Cost: 20
   TurretTransform: {fileID: 4646752945953574}
   CannonTip: {fileID: 4094256178734984}
   Shell: {fileID: 114564555224115326, guid: 71e82d45ecca0d84db70fd90824f1f87, type: 2}
   TimeBetweenShots: 0.5
   GunDamageAmount: 1
   ExplosionDamageAmount: 1
+  Cost: 20
+  RedKeyString: 2
+  BlueKeyString: 2
+  RedIcon: {fileID: 21300000, guid: c1c47ca12d721c241bf1784bc86f9692, type: 3}
+  BlueIcon: {fileID: 21300000, guid: 5b79d7b6fc38d0b4aae90338654c9400, type: 3}
   HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
   UseTurretRotationOffset: 0
   RotationOffset: {x: 0, y: 0, z: 0}
