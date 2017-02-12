@@ -48,7 +48,7 @@ public class UnitIcon : MonoBehaviour
         cooldown = Mathf.MoveTowards(cooldown, 0f, Time.deltaTime * 4f);
 
         int currency = GameState.Instance.GetPlayerController(m_team).Currency;
-        if (currency >= m_cost)
+        if (currency >= m_cost || cooldown > 0f)
         {
             CostText.color = Color.black;
             Overlay.fillAmount = cooldown;
