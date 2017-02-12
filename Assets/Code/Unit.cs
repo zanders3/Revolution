@@ -204,16 +204,7 @@ public class Unit : UnitTarget
                 {
                     if (target != null)
                     {
-                        lastGunRay = new Ray(CannonTip.position, (target.transform.position - CannonTip.position).normalized);
-                        foreach (RaycastHit hit in Physics.RaycastAll(lastGunRay))
-                        {
-                            UnitTarget hitTarget = hit.collider.GetComponent<UnitTarget>();
-                            if (hitTarget != null && hitTarget.Team != Team)
-                            {
-                                hitTarget.Damage(GunDamageAmount);
-                                break;
-                            }
-                        }
+                        target.Damage(GunDamageAmount);
                     }
                 });
                 yield return new WaitForSeconds(TimeBetweenShots);
