@@ -414,10 +414,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
-  Health: 16
+  Health: 40
   GunDamageTaken: 1
   ExplosionDamageTaken: 8
-  ShellDamageTaken: 4
+  ShellDamageTaken: 10
+  ShellExplosionDamageTaken: 1
   FactoryExplosionDamageTaken: 20
   RedMaterials:
   - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
@@ -440,8 +441,8 @@ MonoBehaviour:
   Shell: {fileID: 114564555224115326, guid: 71e82d45ecca0d84db70fd90824f1f87, type: 2}
   TimeBetweenShots: 1
   Cost: 20
-  RedKeyString: 3
-  BlueKeyString: 3
+  RedKeyString: 4
+  BlueKeyString: 4
   RedIcon: {fileID: 21300000, guid: 21238466dcdb76846a4a99043231e7f4, type: 3}
   BlueIcon: {fileID: 21300000, guid: a18429d70fa37de4986e38c20d1bb4d3, type: 3}
   HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}

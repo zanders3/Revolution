@@ -62,7 +62,7 @@ public class GameState : MonoBehaviour
         currentStage = GameStage.Gameplay;
     }
 
-    private void Update()
+    void Update()
     {
         FrontendUI.alpha = Mathf.MoveTowards(FrontendUI.alpha, currentStage == GameStage.Frontend ? 1f : 0f, Time.deltaTime * 3f);
         FrogUI.alpha = Mathf.MoveTowards(FrogUI.alpha, currentStage == GameStage.Frog ? 1f : 0f, Time.deltaTime * 8f);
@@ -80,14 +80,17 @@ public class GameState : MonoBehaviour
             while (CurrencyTimer <= 0.0f && CurrencyAwardTime > 0.0f)
             {
                 CurrencyTimer += CurrencyAwardTime;
-                RedPlayer.Currency += CurrencyAwardAmount;
-                BluePlayer.Currency += CurrencyAwardAmount;
+                AwardCurrency(CurrencyAwardAmount, Team.Red);
+                AwardCurrency(CurrencyAwardAmount, Team.Blue);
             }
-
-            // Cap the currency to avoid numbers getting too large
-            RedPlayer.Currency = Mathf.Min(RedPlayer.Currency, CurrencyCap);
-            BluePlayer.Currency = Mathf.Min(BluePlayer.Currency, CurrencyCap);
         }
+    }
+
+    public void AwardCurrency(int amount, Team team)
+    {
+        PlayerController player = GetPlayerController(team);
+        player.Currency += amount;
+        player.Currency = Mathf.Min(player.Currency, CurrencyCap);
     }
 
     public PlayerController GetPlayerController(Team playerTeam)

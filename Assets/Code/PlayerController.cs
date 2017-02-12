@@ -34,7 +34,39 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (Input.GetButtonDown(UpInputString))
+        bool bSelectedFactoryChanged = false;
+        for (int i = FactoryList.Count - 1; i >= 0; --i)
+        {
+            if (FactoryList[i] == null)
+            {
+                FactoryList.RemoveAt(i);
+                if (SelectedFactoryIdx >= i)
+                {
+                    if (SelectedFactoryIdx == i)
+                    {
+                        bSelectedFactoryChanged = true;
+                    }
+                    --SelectedFactoryIdx;
+                }
+            }
+        }
+        if (SelectedFactoryIdx < 0)
+        {
+            if (FactoryList.Count > 0)
+            {
+                ChangeSelection(0);
+            }
+            else if (SelectionIndicator != null)
+            {
+                Destroy(SelectionIndicator);
+            }
+        }
+        if (bSelectedFactoryChanged)
+        {
+            ChangeSelection(SelectedFactoryIdx);
+        }
+
+        if (Input.GetButtonDown(UpInputString))
         {
             ChangeSelection(SelectedFactoryIdx - 1);
         }
@@ -62,12 +94,6 @@ public class PlayerController : MonoBehaviour {
 
     void ChangeSelection(int NewSelectionIdx)
     {
-        // Don't do anything if we try to change to the currently selected factory
-        if (NewSelectionIdx == SelectedFactoryIdx)
-        {
-            return;
-        }
-
         // Don't do anything if the new index is invalid
         if (NewSelectionIdx < 0 || NewSelectionIdx >= FactoryList.Count)
         {
