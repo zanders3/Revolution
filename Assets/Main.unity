@@ -2509,7 +2509,7 @@ MonoBehaviour:
   GameplayUI: {fileID: 1289146732}
   FrogUI: {fileID: 725573262}
   GameOverUI: {fileID: 725573265}
-  FullscreenUI: {fileID: 0}
+  FullscreenUI: {fileID: 1216641357}
   RedWon: {fileID: 725573264}
   BlueWon: {fileID: 725573263}
 --- !u!4 &469104895
@@ -3736,7 +3736,7 @@ Prefab:
     - target: {fileID: 224931768373760398, guid: 037393340f26b0d4a9b03858905f40ff,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
         type: 2}
@@ -3756,7 +3756,7 @@ Prefab:
     - target: {fileID: 224584588162132594, guid: 037393340f26b0d4a9b03858905f40ff,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -45
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 037393340f26b0d4a9b03858905f40ff, type: 2}
@@ -7604,6 +7604,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1214355194}
   m_Mesh: {fileID: 4300186, guid: 2f2765c370d596d4e950ec9fd4518bf6, type: 3}
+--- !u!225 &1216641357 stripped
+CanvasGroup:
+  m_PrefabParentObject: {fileID: 225612946242401846, guid: 037393340f26b0d4a9b03858905f40ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 725573261}
 --- !u!1 &1233271200
 GameObject:
   m_ObjectHideFlags: 0
