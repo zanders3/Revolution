@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shell : MonoBehaviour
 {
     Vector3 firePosition, targetPosition;
-    TankTarget target;
+    UnitTarget target;
 
     public int DamageAmount = 1;
 
@@ -15,7 +15,7 @@ public class Shell : MonoBehaviour
     float currentDistance;
     Vector3 prevPosition;
 
-    public void Setup(TankTarget target)
+    public void Setup(UnitTarget target)
     {
         this.target = target;
         targetPosition = target.gameObject.transform.position;

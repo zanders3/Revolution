@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-public abstract class TankTarget : MonoBehaviour
+public abstract class UnitTarget : MonoBehaviour
 {
     public Team Team;
     public int Health;

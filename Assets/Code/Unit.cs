@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Tank : TankTarget
+public class Unit : UnitTarget
 {
     NavMeshAgent agent;
     public Material[] RedMaterials;
@@ -17,7 +17,7 @@ public class Tank : TankTarget
     public float TimeBetweenShots;
     public int ExplosionDamageAmount = 1;
 
-    public TankHealthUI HealthUI;
+    public HealthUI HealthUI;
 
     Vector3 turretTransformEuler;
     TankAnimation tankAnim;
@@ -55,7 +55,7 @@ public class Tank : TankTarget
             Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius);
             for (int i = 0; i < colliders.Length; i++)
             {
-                Tank tank = colliders[i].GetComponent<Tank>();
+                Unit tank = colliders[i].GetComponent<Unit>();
                 if (tank != null)
                 {
                     tank.Damage(ExplosionDamageAmount);
@@ -107,14 +107,14 @@ public class Tank : TankTarget
         while (true)
         {
             //Pick the best target
-            TankTarget target = null;
+            UnitTarget target = null;
             while (target == null)
             {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, AttackRadius);
                 float bestTargetDist = float.MaxValue;
                 for (int i = 0; i < colliders.Length; i++)
                 {
-                    TankTarget newTarget = colliders[i].GetComponent<TankTarget>();
+                    UnitTarget newTarget = colliders[i].GetComponent<UnitTarget>();
                     if (newTarget != null && newTarget.Team != Team)
                     {
                         float dist = Vector3.Distance(transform.position, newTarget.transform.position);

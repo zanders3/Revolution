@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TankHealthUI : MonoBehaviour
+public class HealthUI : MonoBehaviour
 {
-    TankTarget target;
+    UnitTarget target;
     Camera mainCamera;
     public Image HealthBarImage;
 
@@ -16,7 +16,7 @@ public class TankHealthUI : MonoBehaviour
         mainCamera = Camera.main;
 	}
 
-    public void Setup(TankTarget target)
+    public void Setup(UnitTarget target)
     {
         this.target = target;
         maxHealth = target.Health;

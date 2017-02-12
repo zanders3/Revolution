@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Factory : TankTarget
+public class Factory : UnitTarget
 {
-	public Tank[] SpawnPrefabs;
+	public Unit[] SpawnPrefabs;
     public Transform SpawnLocation, SpawnEndLocation;
     public Factory TargetFactory;
     
-    public TankHealthUI HealthUI;
+    public HealthUI HealthUI;
     public GameObject LargeExplosionPrefab;
     public float ExplosionRadius;
 
@@ -37,7 +37,7 @@ public class Factory : TankTarget
 
             foreach (Collider collider in Physics.OverlapSphere(transform.position, ExplosionRadius))
             {
-                TankTarget target = collider.GetComponent<TankTarget>();
+                UnitTarget target = collider.GetComponent<UnitTarget>();
                 if (target != null)
                     target.Damage(1000);
             }
@@ -58,7 +58,7 @@ public class Factory : TankTarget
     {
         yield return new WaitForSeconds(.27f);
 
-        Tank newUnit = Instantiate(SpawnPrefabs[unitType], SpawnLocation.position, SpawnLocation.rotation);
+        Unit newUnit = Instantiate(SpawnPrefabs[unitType], SpawnLocation.position, SpawnLocation.rotation);
         newUnit.Setup(
             FindTargetFactory(),
             Team,
