@@ -559,7 +559,7 @@ Prefab:
         type: 2}
       propertyPath: TargetFactory
       value: 
-      objectReference: {fileID: 101917934}
+      objectReference: {fileID: 1981172713}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bda162b437a859e46a4787df9b179fb2, type: 2}
   m_IsPrefabParent: 0
@@ -2351,8 +2351,9 @@ MonoBehaviour:
   RedPlayer: {fileID: 469104897}
   BluePlayer: {fileID: 469104896}
   StartingCurrency: 30
-  CurrencyAwardTime: 0.5
-  CurrencyAwardAmount: 10
+  CurrencyAwardTime: 1
+  CurrencyAwardAmount: 5
+  CurrencyCap: 500
 --- !u!4 &469104895
 Transform:
   m_ObjectHideFlags: 0
@@ -2378,10 +2379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FactoryList:
-  - {fileID: 101917934}
-  - {fileID: 1727137972}
   - {fileID: 1981172713}
-  SelectionIndicatorPrefab: {fileID: 1690794611085254, guid: b966187843d8d2046b557a41d4608ddc,
+  - {fileID: 1727137972}
+  - {fileID: 101917934}
+  SelectionIndicatorPrefab: {fileID: 1420839479345140, guid: 01a26ecfa84761544992b357c4a03c1c,
     type: 2}
   UpInputString: UpKey
   DownInputString: DownKey
@@ -2401,7 +2402,7 @@ MonoBehaviour:
   - {fileID: 885652062}
   - {fileID: 1116263728}
   - {fileID: 101025549}
-  SelectionIndicatorPrefab: {fileID: 1690794611085254, guid: b966187843d8d2046b557a41d4608ddc,
+  SelectionIndicatorPrefab: {fileID: 1000955555737708, guid: 9f6e61721f5e113418e58d99be8b2003,
     type: 2}
   UpInputString: WKey
   DownInputString: SKey
@@ -6486,7 +6487,7 @@ Prefab:
         type: 2}
       propertyPath: TargetFactory
       value: 
-      objectReference: {fileID: 1981172713}
+      objectReference: {fileID: 101917934}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bda162b437a859e46a4787df9b179fb2, type: 2}
   m_IsPrefabParent: 0
