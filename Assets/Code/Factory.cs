@@ -13,6 +13,7 @@ public class Factory : UnitTarget
     public HealthUI HealthUI;
     public GameObject LargeExplosionPrefab;
     public float ExplosionRadius;
+    public AudioClip[] ExplosionClips;
 
     FactoryAnimation factoryAnim;
 
@@ -27,6 +28,11 @@ public class Factory : UnitTarget
     {
         if (Health <= 0)
         {
+            int numExplosionClips = ExplosionClips.Length;
+            for (int i = 0; i < numExplosionClips; ++i)
+            {
+                AudioSource.PlayClipAtPoint(ExplosionClips[i], Camera.main.transform.position);
+            }
             Destroy(Instantiate(LargeExplosionPrefab, transform.position, transform.rotation), 3f);
 
             foreach (Collider collider in Physics.OverlapSphere(transform.position, ExplosionRadius))
@@ -67,7 +73,7 @@ public class Factory : UnitTarget
         factoryAnim.DoSpawnAnimation();
         if (SpawnClip != null)
         {
-            AudioSource.PlayClipAtPoint(SpawnClip, transform.position);
+            AudioSource.PlayClipAtPoint(SpawnClip, Camera.main.transform.position);
         }
         StartCoroutine(DoSpawnUnit(unitType));
     }

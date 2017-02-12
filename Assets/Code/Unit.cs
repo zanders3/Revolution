@@ -87,7 +87,7 @@ public class Unit : UnitTarget
                 if (numExplosionClips > 0)
                 {
                     int clipIdx = UnityEngine.Random.Range(0, numExplosionClips - 1);
-                    AudioSource.PlayClipAtPoint(ExplosionClips[clipIdx], transform.position);
+                    AudioSource.PlayClipAtPoint(ExplosionClips[clipIdx], Camera.main.transform.position);
                 }
             }
             if (TankDeathPrefab != null)
@@ -202,10 +202,6 @@ public class Unit : UnitTarget
                 if (FireGunPrefab != null)
                 {
                     Destroy(Instantiate(FireGunPrefab, CannonTip.position, Quaternion.LookRotation(-CannonTip.forward, Vector3.up)), 2f);
-                    if (FireGunClip != null)
-                    {
-                        AudioSource.PlayClipAtPoint(FireGunClip, transform.position);
-                    }
                 }
 
                 unitAnim.Shoot();
@@ -214,6 +210,11 @@ public class Unit : UnitTarget
                 {
                     if (target != null)
                     {
+                        if (FireGunClip != null)
+                        {
+                            AudioSource.PlayClipAtPoint(FireGunClip, Camera.main.transform.position);
+                        }
+
                         Shell shell = Instantiate(Shell, CannonTip.position, CannonTip.rotation);
                         shell.Setup(target);
                     }
@@ -223,6 +224,10 @@ public class Unit : UnitTarget
                 {
                     if (target != null)
                     {
+                        if (FireGunClip != null)
+                        {
+                            AudioSource.PlayClipAtPoint(FireGunClip, Camera.main.transform.position);
+                        }
                         target.Damage(DamageType.Gun);
                     }
                 });

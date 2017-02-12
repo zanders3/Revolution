@@ -433,6 +433,12 @@ MonoBehaviour:
   TankExplosion: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
     type: 2}
   FireGunPrefab: {fileID: 0}
+  ExplosionClips:
+  - {fileID: 8300000, guid: 5b0685bcd796b8646ac422057d233e50, type: 3}
+  - {fileID: 8300000, guid: a2de50d0a11c3a34d9c8ff6fb7a32af1, type: 3}
+  - {fileID: 8300000, guid: ecc6fd59e661cc94ca5d4f04092ad6ae, type: 3}
+  - {fileID: 8300000, guid: 5ae5a2633ced6a445b61a1a37f0c4141, type: 3}
+  FireGunClip: {fileID: 8300000, guid: ebc7864c7f8993d40b423fb4a45bcf80, type: 3}
   AttackRadius: 8
   TurretMoveSpeed: 240
   ExplosionRadius: 3

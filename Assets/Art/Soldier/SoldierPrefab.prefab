@@ -13036,7 +13036,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305652043587482}
-  m_LocalRotation: {x: -0.09317882, y: 0.68184525, z: 0.6627334, w: 0.29527852}
+  m_LocalRotation: {x: -0.093178816, y: 0.6818452, z: 0.6627333, w: 0.2952785}
   m_LocalPosition: {x: 0.6666701, y: 1.329045, z: -0.00042602367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -18277,6 +18277,8 @@ MonoBehaviour:
   TankExplosion: {fileID: 0}
   FireGunPrefab: {fileID: 1595786724943826, guid: 17bf2e03c652c5a419825901a3b7423c,
     type: 2}
+  ExplosionClips: []
+  FireGunClip: {fileID: 8300000, guid: 53b9d18865712844faa012aa6e33816e, type: 3}
   AttackRadius: 8
   TurretMoveSpeed: 240
   ExplosionRadius: 0
@@ -18284,6 +18286,7 @@ MonoBehaviour:
   CannonTip: {fileID: 4574275617839356}
   Shell: {fileID: 0}
   TimeBetweenShots: 1
+  Reward: 1
   Cost: 5
   RedKeyString: 1
   BlueKeyString: 1

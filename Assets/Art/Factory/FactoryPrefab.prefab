@@ -439,6 +439,9 @@ MonoBehaviour:
   LargeExplosionPrefab: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
     type: 2}
   ExplosionRadius: 8
+  ExplosionClips:
+  - {fileID: 8300000, guid: ecc6fd59e661cc94ca5d4f04092ad6ae, type: 3}
+  - {fileID: 8300000, guid: 5ae5a2633ced6a445b61a1a37f0c4141, type: 3}
 --- !u!137 &137380666211875626
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
