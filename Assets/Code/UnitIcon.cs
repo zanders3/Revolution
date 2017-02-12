@@ -7,14 +7,19 @@ public class UnitIcon : MonoBehaviour
 {
     public Image Icon;
     public Image Overlay;
-    public Text Cost;
+    public Text CostText;
     public Text Key;
-    public int UnitType;
+
+    int m_unitType;
+    int m_cost;
+    Team m_team;
 
     public void Setup(Unit unit, Team team, int unitType)
     {
-        UnitType = unitType;
-        Cost.text = unit.Cost.ToString();
+        m_unitType = unitType;
+        m_cost = unit.Cost;
+        m_team = team;
+        CostText.text = m_cost.ToString();
         if (team == Team.Red)
         {
             Key.text = unit.RedKeyString;
@@ -24,6 +29,21 @@ public class UnitIcon : MonoBehaviour
         {
             Key.text = unit.BlueKeyString;
             Icon.sprite = unit.BlueIcon;
+        }
+    }
+
+    private void Update()
+    {
+        int currency = GameState.Instance.GetPlayerController(m_team).Currency;
+        if (currency >= m_cost)
+        {
+            CostText.color = Color.black;
+            Overlay.fillAmount = 0;
+        }
+        else
+        {
+            CostText.color = Color.red;
+            Overlay.fillAmount = 1;
         }
     }
 }

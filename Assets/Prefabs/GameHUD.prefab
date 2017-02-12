@@ -462,9 +462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 114183055157980772}
   Overlay: {fileID: 114797001234694218}
-  Cost: {fileID: 114734105397941824}
+  CostText: {fileID: 114734105397941824}
   Key: {fileID: 114814764438536060}
-  UnitType: 0
 --- !u!114 &114176317545539086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -478,9 +477,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 114310348131969264}
   Overlay: {fileID: 114472399854010278}
-  Cost: {fileID: 114890072577465552}
+  CostText: {fileID: 114890072577465552}
   Key: {fileID: 114433568654265016}
-  UnitType: 0
 --- !u!114 &114183055157980772
 MonoBehaviour:
   m_ObjectHideFlags: 1
