@@ -18266,21 +18266,13 @@ MonoBehaviour:
   ShellExplosionDamageTaken: 1
   FactoryExplosionDamageTaken: 1000
   RedMaterials:
-  - {fileID: 2100000, guid: 18ac7639cb15eff4f8ee3a0ebb56b4e3, type: 2}
-  - {fileID: 2100000, guid: bf4c2212b86b2f54faab9ce24dcad683, type: 2}
   - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
-  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
-  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
-  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
-  - {fileID: 2100000, guid: 578cbe29d4c2dc44690bc07415f2c358, type: 2}
+  - {fileID: 2100000, guid: 4c9d9a2e028b8934aa49da3eb644701a, type: 2}
+  - {fileID: 2100000, guid: 4c9d9a2e028b8934aa49da3eb644701a, type: 2}
   BlueMaterials:
-  - {fileID: 2100000, guid: 18ac7639cb15eff4f8ee3a0ebb56b4e3, type: 2}
-  - {fileID: 2100000, guid: bf4c2212b86b2f54faab9ce24dcad683, type: 2}
   - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
-  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
-  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
-  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
-  - {fileID: 2100000, guid: 4beb2e53d921d574e82af8c7c36ead63, type: 2}
+  - {fileID: 2100000, guid: 2b40c792345c55c44b1d02293f0c8eaf, type: 2}
+  - {fileID: 2100000, guid: 2b40c792345c55c44b1d02293f0c8eaf, type: 2}
   TankDeathPrefab: {fileID: 0}
   TankExplosion: {fileID: 0}
   FireGunPrefab: {fileID: 0}
@@ -18295,8 +18287,8 @@ MonoBehaviour:
   Cost: 10
   RedKeyString: 2
   BlueKeyString: 2
-  RedIcon: {fileID: 21300000, guid: 6a5a45cf91ea04247a83a81a834f795e, type: 3}
-  BlueIcon: {fileID: 21300000, guid: d752c05293d84be45a9dbdd373c8d6fb, type: 3}
+  RedIcon: {fileID: 21300000, guid: 09b96d93267140d40a2eb1ff3508c534, type: 3}
+  BlueIcon: {fileID: 21300000, guid: 092bb0e139737b5439da727e014d1f58, type: 3}
   HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
   UseTurretRotationOffset: 1
   RotationOffset: {x: 0, y: 10, z: 10}
