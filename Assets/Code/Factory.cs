@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -32,7 +33,7 @@ public class Factory : TankTarget
     {
         if (Health <= 0)
         {
-            Destroy(Instantiate(LargeExplosionPrefab, transform.position, transform.rotation), 5f);
+            Destroy(Instantiate(LargeExplosionPrefab, transform.position, transform.rotation), 3f);
 
             foreach (Collider collider in Physics.OverlapSphere(transform.position, ExplosionRadius))
             {
@@ -53,20 +54,21 @@ public class Factory : TankTarget
         return GameState.Instance.FindEnemyFactory(Team);
     }
 
-    public bool SpawnUnit(int unitType)
+    IEnumerator DoSpawnUnit(int unitType)
+    {
+        yield return new WaitForSeconds(.27f);
+
+        Tank newUnit = Instantiate(SpawnPrefabs[unitType], SpawnLocation.position, SpawnLocation.rotation);
+        newUnit.Setup(
+            FindTargetFactory(),
+            Team,
+            SpawnEndLocation.position
+        );
+    }
+
+    public void SpawnUnit(int unitType)
     {
         factoryAnim.DoSpawnAnimation();
-        factoryAnim.SpawnUnit.RemoveAllListeners();
-        factoryAnim.SpawnUnit.AddListener(() =>
-        {
-            Tank newUnit = Instantiate(SpawnPrefabs[unitType], SpawnLocation.position, SpawnLocation.rotation);
-            newUnit.Setup(
-                FindTargetFactory(),
-                Team,
-                SpawnEndLocation.position
-            );
-        });
-
-        return true;
+        StartCoroutine(DoSpawnUnit(unitType));
     }
 }

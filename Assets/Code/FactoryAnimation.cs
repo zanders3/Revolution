@@ -5,13 +5,16 @@ public class FactoryAnimation : MonoBehaviour
 {
     public UnityEvent SpawnUnit = new UnityEvent();
 
-    public void DoSpawnAnimation()
+    Animator animator;
+
+    void Start()
     {
-        GetComponent<Animator>().SetTrigger("SpawnUnit");
+        animator = GetComponent<Animator>();
     }
 
-    void OnSpawnUnit()
+    public void DoSpawnAnimation()
     {
-        SpawnUnit.Invoke();
+        animator.ResetTrigger("SpawnUnit");
+        animator.SetTrigger("SpawnUnit");
     }
 }
