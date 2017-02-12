@@ -156,6 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224996848548707718}
   - component: {fileID: 114981913751756054}
+  - component: {fileID: 114838441939649144}
   m_Layer: 0
   m_Name: R_UnitLayout
   m_TagString: Untagged
@@ -573,6 +574,19 @@ MonoBehaviour:
   m_Text: '1
 
 '
+--- !u!114 &114838441939649144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1742350013571608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7f0f8ed20e64a409a4df7a34a38086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  FirstIcon: {fileID: 114173438881007056}
 --- !u!114 &114873333410876748
 MonoBehaviour:
   m_ObjectHideFlags: 1
