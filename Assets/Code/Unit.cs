@@ -12,6 +12,7 @@ public class Unit : UnitTarget
     
     public GameObject TankDeathPrefab, TankExplosion, FireGunPrefab;
     public float AttackRadius = 10f, TurretMoveSpeed = 1f, ExplosionRadius = 3f;
+    public int Cost = 20;
     public Transform TurretTransform, CannonTip;
     public Shell Shell;
     public float TimeBetweenShots;

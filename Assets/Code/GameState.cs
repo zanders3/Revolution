@@ -19,12 +19,19 @@ public class GameState : MonoBehaviour
     public int CurrencyCap = 990;
     float CurrencyTimer;
 
+    [System.NonSerialized]
+    public Unit[] UnitPrefabs;
+
     public static GameState Instance;
 
 	void Awake()
 	{
 		Instance = this;
         CurrencyTimer = CurrencyAwardTime;
+        if (RedPlayer.FactoryList.Count > 0)
+        {
+            UnitPrefabs = RedPlayer.FactoryList[0].SpawnPrefabs;
+        }
 	}
 
     private void Start()

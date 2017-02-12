@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour {
 
     // Inputs for spawning units
     public string SpawnInputString0;
+    public string SpawnInputString1;
+    public string SpawnInputString2;
+    public string SpawnInputString3;
 
     // Use this for initialization
     void Start ()
@@ -42,6 +45,18 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetButtonDown(SpawnInputString0))
         {
             TrySpawnUnit(0);
+        }
+        else if (Input.GetButtonDown(SpawnInputString1))
+        {
+            TrySpawnUnit(1);
+        }
+        else if (Input.GetButtonDown(SpawnInputString2))
+        {
+            TrySpawnUnit(2);
+        }
+        else if (Input.GetButtonDown(SpawnInputString3))
+        {
+            TrySpawnUnit(3);
         }
     }
 
@@ -76,11 +91,14 @@ public class PlayerController : MonoBehaviour {
     {
         if (SelectedFactoryIdx >= 0 && SelectedFactoryIdx < FactoryList.Count)
         {
-            int unitCost = 20;
-            if(Currency >= unitCost)
+            if (unitType >= 0 && unitType < FactoryList[SelectedFactoryIdx].SpawnPrefabs.Length)
             {
-                Currency -= unitCost;
-                FactoryList[SelectedFactoryIdx].SpawnUnit(unitType);
+                int unitCost = FactoryList[SelectedFactoryIdx].SpawnPrefabs[unitType].Cost;
+                if (Currency >= unitCost)
+                {
+                    Currency -= unitCost;
+                    FactoryList[SelectedFactoryIdx].SpawnUnit(unitType);
+                }
             }
         }
     }
