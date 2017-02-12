@@ -397,6 +397,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  FireGun:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114461134259153370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -409,7 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
-  Health: 4
+  Health: 8
   RedMaterials:
   - {fileID: 2100000, guid: 2f9e091e09fb7a140a564672bf40740f, type: 2}
   - {fileID: 2100000, guid: 4c9d9a2e028b8934aa49da3eb644701a, type: 2}
@@ -422,15 +427,20 @@ MonoBehaviour:
     type: 2}
   TankExplosion: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
     type: 2}
+  FireGunPrefab: {fileID: 0}
   AttackRadius: 8
   TurretMoveSpeed: 240
   ExplosionRadius: 3
+  Cost: 20
   TurretTransform: {fileID: 4571757290007204}
   CannonTip: {fileID: 4826689116091152}
   Shell: {fileID: 114564555224115326, guid: 71e82d45ecca0d84db70fd90824f1f87, type: 2}
   TimeBetweenShots: 1
+  GunDamageAmount: 2
   ExplosionDamageAmount: 2
   HealthUI: {fileID: 114533216799934152, guid: 4ceedf8aaadc4c64db5ba0649d9c73ad, type: 2}
+  UseTurretRotationOffset: 0
+  RotationOffset: {x: 0, y: 0, z: 0}
 --- !u!136 &136175672095550770
 CapsuleCollider:
   m_ObjectHideFlags: 1

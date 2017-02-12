@@ -25,8 +25,11 @@ public class Unit : UnitTarget
     public Sprite BlueIcon;
 
     public HealthUI HealthUI;
+    public bool UseTurretRotationOffset = false;
+    public Vector3 RotationOffset;
 
-    Vector3 turretTransformEuler;
+    bool hasGotTurretTransform = false;
+    Vector3 turretTransformEuler, rotationOffset;
     UnitAnimation unitAnim;
     Factory targetFactory;
 
@@ -42,8 +45,6 @@ public class Unit : UnitTarget
             Instantiate(HealthUI, transform, false).Setup(this);
 
         unitAnim = GetComponentInChildren<UnitAnimation>();
-        if (TurretTransform != null)
-            turretTransformEuler = TurretTransform.eulerAngles;
 
         StartCoroutine(RunAI(spawnTargetLocation));
     }
@@ -99,8 +100,11 @@ public class Unit : UnitTarget
     {
         if (agent != null)
             unitAnim.IsDriving = agent.velocity.magnitude > .4f;
-        if (TurretTransform != null)
-            TurretTransform.eulerAngles = turretTransformEuler;
+        if (hasGotTurretTransform)
+        {
+            TurretTransform.eulerAngles = turretTransformEuler + rotationOffset + RotationOffset;
+            hasGotTurretTransform = true;
+        }
     }
 
     void MoveTurretToTarget(Vector3 targetEuler)
@@ -120,6 +124,11 @@ public class Unit : UnitTarget
             transform.position = Vector3.MoveTowards(transform.position, postSpawnPosition, agent.speed * Time.deltaTime);
             yield return null;
         }
+
+        if (UseTurretRotationOffset)
+            rotationOffset = TurretTransform.eulerAngles;
+        turretTransformEuler = TurretTransform.eulerAngles;
+        hasGotTurretTransform = true;
 
         if (targetFactory != null)
             agent.destination = targetFactory.transform.position;
@@ -147,7 +156,7 @@ public class Unit : UnitTarget
                 }
 
                 if (agent.desiredVelocity.sqrMagnitude > 0.1f)
-                    MoveTurretToTarget(Quaternion.LookRotation(-agent.desiredVelocity, Vector3.up).eulerAngles);
+                    MoveTurretToTarget(Quaternion.LookRotation(UseTurretRotationOffset ? agent.desiredVelocity : -agent.desiredVelocity, Vector3.up).eulerAngles);
 
                 if (targetFactory == null)
                 {
@@ -167,7 +176,7 @@ public class Unit : UnitTarget
                 Vector3 targetPosition = target.gameObject.transform.position;
                 Vector3 targetDelta = (targetPosition - transform.position).normalized;
 
-                Vector3 targetEuler = Quaternion.LookRotation(-targetDelta, Vector3.up).eulerAngles;
+                Vector3 targetEuler = Quaternion.LookRotation(UseTurretRotationOffset ? targetDelta : -targetDelta, Vector3.up).eulerAngles;
                 MoveTurretToTarget(targetEuler);
                 if (Mathf.Abs(targetEuler.y - turretTransformEuler.y) < .1f)
                 {
@@ -200,16 +209,7 @@ public class Unit : UnitTarget
                 {
                     if (target != null)
                     {
-                        lastGunRay = new Ray(CannonTip.position, -CannonTip.forward);
-                        foreach (RaycastHit hit in Physics.RaycastAll(lastGunRay))
-                        {
-                            UnitTarget hitTarget = hit.collider.GetComponent<UnitTarget>();
-                            if (hitTarget != null && hitTarget.Team != Team)
-                            {
-                                hitTarget.Damage(GunDamageAmount);
-                                break;
-                            }
-                        }
+                        target.Damage(GunDamageAmount);
                     }
                 });
                 yield return new WaitForSeconds(TimeBetweenShots);
